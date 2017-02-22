@@ -1,0 +1,26 @@
+\begin{thebibliography}{1}
+
+\bibitem{Feldman1979}
+S.~I. Feldman, ``Make — a program for maintaining computer programs,'' {\em
+  Software: Practice and Experience}, vol.~9, no.~4, pp.~255--265, 1979.
+
+\bibitem{GNUMakeManual}
+``Gnu make.'' \url{https://www.gnu.org/software/make/manual/make.html}.
+
+\bibitem{rtemsIntro}
+``Getting started with rtems,'' tech. rep., 2008.
+
+\bibitem{GitflowWorkflow}
+``Gitflow workflow.''
+  \url{https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow}.
+
+\bibitem{chacon2011git}
+S.~Chacon, ``Git documentation,'' 2011.
+
+\bibitem{koebel2010scoc3}
+F.~Koebel and J.-F. Coldefy, ``Scoc3: a space computer on a chip: an example of
+  successful development of a highly integrated innovative asic,'' in {\em
+  Proceedings of the Conference on Design, Automation and Test in Europe},
+  pp.~1345--1348, European Design and Automation Association, 2010.
+
+\end{thebibliography}
