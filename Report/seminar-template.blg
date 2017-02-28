@@ -1,11 +1,11 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: seminar-template.aux
 The style file: ieeetr.bst
 Database file #1: seminar-template.bib
-I was expecting a `,' or a `}'---line 40 of file seminar-template.bib
- :   
- :   publisher={On-Line Applications Research Corporation}
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
+Warning--empty journal in taylor1984introduction
+Warning--empty journal in dart1992overview
 Warning--empty author in rtemsIntro
 Warning--empty institution in rtemsIntro
-(There was 1 error message)
+Warning--empty journal in stallman1991gnu
+Warning--empty author in ARMPartialLinking
+Warning--empty institution in ARMPartialLinking
+(There were 7 warnings)

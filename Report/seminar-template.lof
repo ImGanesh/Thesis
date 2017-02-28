@@ -1,0 +1,12 @@
+\select@language {english}
+\contentsline {figure}{\numberline {1}{\ignorespaces An example of a \textsf {\itshape build.gradle}\relax }}{9}{figure.caption.6}
+\contentsline {figure}{\numberline {2}{\ignorespaces The output of \textsf {\itshape gradle tasks} command\relax }}{10}{figure.caption.7}
+\contentsline {figure}{\numberline {3}{\ignorespaces Action Research (AR) cycle consisting of three distinct stages\relax }}{10}{figure.caption.8}
+\contentsline {figure}{\numberline {4}{\ignorespaces SDE set-up for AS400 Central Software Development\relax }}{15}{figure.caption.9}
+\contentsline {figure}{\numberline {5}{\ignorespaces The AS400 Project top level view.\relax }}{16}{figure.caption.10}
+\contentsline {figure}{\numberline {6}{\ignorespaces An excerpt of the AS400 Production Repository Structure\relax }}{17}{figure.caption.11}
+\contentsline {figure}{\numberline {7}{\ignorespaces Representation of the Gitflow Workflow containing master, feature, develop and release branches\relax }}{18}{figure.caption.12}
+\contentsline {figure}{\numberline {8}{\ignorespaces Source Tree of one of the Collections containing Constituents and Sub-Constituents\relax }}{20}{figure.caption.13}
+\contentsline {figure}{\numberline {9}{\ignorespaces Makefile for 'aocs' Collection\relax }}{21}{figure.caption.14}
+\contentsline {figure}{\numberline {10}{\ignorespaces Makefile for 'aocsApFw' Constituent\relax }}{21}{figure.caption.14}
+\contentsline {figure}{\numberline {11}{\ignorespaces build.xml for AS400 Validation\relax }}{23}{figure.caption.15}

@@ -1,37 +1,36 @@
 \select@language {english}
-\contentsline {section}{\numberline {1}Abstract}{3}{section.1}
-\contentsline {section}{\numberline {2}Introduction}{3}{section.2}
-\contentsline {section}{\numberline {3}Background and Research Approach}{3}{section.3}
-\contentsline {subsection}{\numberline {3.1}Background}{3}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}Continuous Integration}{3}{subsubsection.3.1.1}
-\contentsline {subsubsection}{\numberline {3.1.2}Build Systems}{3}{subsubsection.3.1.2}
-\contentsline {paragraph}{\nonumberline Make}{4}{section*.2}
-\contentsline {paragraph}{\nonumberline Ant}{4}{section*.3}
-\contentsline {paragraph}{\nonumberline Gradle}{4}{section*.4}
-\contentsline {subsection}{\numberline {3.2}Research Approach}{4}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Action Research}{4}{subsubsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3.2.2}Qualitative Metrics in Study}{4}{subsubsection.3.2.2}
-\contentsline {section}{\numberline {4}On-Board Software Development (OBSW) - AS400 Central Software (CSW)}{4}{section.4}
-\contentsline {subsection}{\numberline {4.1}Overview}{4}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Software Development Environment (SDE)}{5}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Software Development in OBSW - CSW}{5}{subsection.4.3}
-\contentsline {subsubsection}{\numberline {4.3.1}Terminology}{5}{subsubsection.4.3.1}
-\contentsline {subsubsection}{\numberline {4.3.2}AS400 CSW Architecture}{7}{subsubsection.4.3.2}
-\contentsline {subsection}{\numberline {4.4}Software Development Workflow}{7}{subsection.4.4}
-\contentsline {subsection}{\numberline {4.5}Build Automation in AS400 CSW}{7}{subsection.4.5}
-\contentsline {section}{\numberline {5}Gradle for AS400 CSW}{11}{section.5}
-\contentsline {subsection}{\numberline {5.1}Terminology}{12}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Build System Design Aspects}{12}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Analysis of Build Logic}{12}{subsection.5.3}
-\contentsline {section}{\numberline {6}Continuous Integration in AS400 CSW}{12}{section.6}
-\contentsline {subsection}{\numberline {6.1}Terminology}{12}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}CI Workflow for AS400 CSW}{12}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Challenges faced during design}{12}{subsection.6.3}
-\contentsline {section}{\numberline {7}Evaluation and Results}{12}{section.7}
-\contentsline {subsection}{\numberline {7.1}Performance Comparison}{12}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}Complexity of Build Logic}{12}{subsection.7.2}
-\contentsline {subsection}{\numberline {7.3}Feature Comparison}{12}{subsection.7.3}
-\contentsline {subsection}{\numberline {7.4}Summary}{12}{subsection.7.4}
-\contentsline {section}{\numberline {8}Conclusion}{12}{section.8}
-\contentsline {subsection}{\numberline {8.1}Summary}{12}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}Future Work}{12}{subsection.8.2}
+\contentsline {section}{\numberline {1}Introduction}{5}{section.1}
+\contentsline {section}{\numberline {2}Background and Research Approach}{6}{section.2}
+\contentsline {subsection}{\numberline {2.1}Background}{6}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Continuous Integration}{6}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Build Systems}{7}{subsubsection.2.1.2}
+\contentsline {paragraph}{\nonumberline Make}{7}{section*.3}
+\contentsline {paragraph}{\nonumberline Ant}{8}{section*.4}
+\contentsline {paragraph}{\nonumberline Gradle}{9}{section*.5}
+\contentsline {subsection}{\numberline {2.2}Research Approach}{10}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Action Research}{10}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Qualitative Metrics in Study}{11}{subsubsection.2.2.2}
+\contentsline {section}{\numberline {3}On-Board Software Development (OBSW) - AS400 Central Software (CSW)}{13}{section.3}
+\contentsline {subsection}{\numberline {3.1}Overview}{13}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Software Development Environment (SDE)}{13}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Software Development in OBSW - CSW}{15}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Terminology}{15}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}AS400 CSW Architecture}{16}{subsubsection.3.3.2}
+\contentsline {subsection}{\numberline {3.4}Software Development Workflow}{17}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Build Automation in AS400 CSW}{18}{subsection.3.5}
+\contentsline {section}{\numberline {4}Gradle for AS400 CSW}{24}{section.4}
+\contentsline {subsection}{\numberline {4.1}Terminology}{24}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Build System Design Aspects}{24}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Analysis of Build Logic}{24}{subsection.4.3}
+\contentsline {section}{\numberline {5}Continuous Integration in AS400 CSW}{24}{section.5}
+\contentsline {subsection}{\numberline {5.1}Terminology}{24}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}CI Workflow for AS400 CSW}{24}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Challenges faced during design}{24}{subsection.5.3}
+\contentsline {section}{\numberline {6}Evaluation and Results}{24}{section.6}
+\contentsline {subsection}{\numberline {6.1}Performance Comparison}{24}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Complexity of Build Logic}{24}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Feature Comparison}{24}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}Summary}{24}{subsection.6.4}
+\contentsline {section}{\numberline {7}Conclusion}{24}{section.7}
+\contentsline {subsection}{\numberline {7.1}Summary}{24}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Future Work}{24}{subsection.7.2}

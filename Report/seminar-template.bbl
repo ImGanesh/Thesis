@@ -1,26 +1,189 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{beck2000extreme}
+K.~Beck, {\em Extreme programming explained: embrace change}.
+\newblock Addison-Wesley professional, 2000.
+
+\bibitem{fowler2006continuous}
+M.~Fowler and M.~Foemmel, ``Continuous integration,'' {\em Thought-Works
+  http://www. thoughtworks. com/Continuous Integration. pdf}, p.~122, 2006.
+
+\bibitem{duvall2007continuous}
+P.~M. Duvall, {\em Continuous integration. Improving Software Quality and
+  Reducing Risk}.
+\newblock Pearson Education India, 2007.
+
+\bibitem{staahl2013experienced}
+D.~St{\aa}hl and J.~Bosch, ``Experienced benefits of continuous integration in
+  industry software product development: A case study,'' in {\em The 12th
+  iasted international conference on software engineering,(innsbruck, austria,
+  2013)}, pp.~736--743, 2013.
+
+\bibitem{miller2008hundred}
+A.~Miller, ``A hundred days of continuous integration,'' in {\em Agile, 2008.
+  AGILE'08. Conference}, pp.~289--293, IEEE, 2008.
+
+\bibitem{debbiche2014challenges}
+A.~Debbiche, M.~Dien{\'e}r, and R.~B. Svensson, ``Challenges when adopting
+  continuous integration: A case study,'' in {\em International Conference on
+  Product-Focused Software Process Improvement}, pp.~17--32, Springer, 2014.
+
+\bibitem{claps2015journey}
+G.~G. Claps, R.~B. Svensson, and A.~Aurum, ``On the journey to continuous
+  deployment: Technical and social challenges along the way,'' {\em Information
+  and Software technology}, vol.~57, pp.~21--31, 2015.
+
+\bibitem{olsson2012climbing}
+H.~H. Olsson, H.~Alahyari, and J.~Bosch, ``Climbing the" stairway to heaven"--a
+  mulitiple-case study exploring barriers in the transition from agile
+  development towards continuous deployment of software,'' in {\em Software
+  Engineering and Advanced Applications (SEAA), 2012 38th EUROMICRO Conference
+  on}, pp.~392--399, IEEE, 2012.
 
 \bibitem{Feldman1979}
 S.~I. Feldman, ``Make — a program for maintaining computer programs,'' {\em
   Software: Practice and Experience}, vol.~9, no.~4, pp.~255--265, 1979.
 
 \bibitem{GNUMakeManual}
-``Gnu make.'' \url{https://www.gnu.org/software/make/manual/make.html}.
+R.~M. Stallman, R.~McGrath, and P.~D. Smith, ``Gnu make manual,'' {\em Free
+  Software Foundation}, vol.~3, 2014.
+
+\bibitem{RecursiveMake}
+``Recursive use of make.'' URL:
+  \url{https://www.gnu.org/software/make/manual/html_node/Recursion.html}.
+
+\bibitem{miller1998recursive}
+P.~Miller, ``Recursive make considered harmful,'' {\em AUUGN Journal of AUUG
+  Inc}, vol.~19, no.~1, pp.~14--25, 1998.
+
+\bibitem{AutoDepGen}
+``Gnu make - auto-dependency generation.'' URL:
+  \url{http://make.mad-scientist.net/papers/advanced-auto-dependency-generation/}.
+
+\bibitem{ant2004apache}
+A.~Ant, ``Apache software foundation.'' URL:
+  \url{http://ant.apache.org/manual/index.html}, 2004.
+
+\bibitem{williamson2002ant}
+A.~Williamson, J.~Gibson, A.~Wu, and K.~Pepperdine, {\em Ant Developer's
+  Handbook}.
+\newblock Sams Publishing, 2002.
+
+\bibitem{dockter2015gradle}
+H.~Dockter and A.~Murdoch, ``Gradle user guide,'' 2015.
+
+\bibitem{van2002domain}
+A.~Van~Deursen and P.~Klint, ``Domain-specific language design requires feature
+  descriptions,'' {\em CIT. Journal of computing and information technology},
+  vol.~10, no.~1, pp.~1--17, 2002.
+
+\bibitem{koenig2007groovy}
+D.~Koenig, A.~Glover, and D.~K{\"o}nig, {\em Groovy in action}, vol.~1.
+\newblock Manning, 2007.
+
+\bibitem{gradleCompanies}
+``About gradle inc..'' URL: \url{https://gradle.com/about}, 2017.
+
+\bibitem{easterbrook2008selecting}
+S.~Easterbrook, J.~Singer, M.-A. Storey, and D.~Damian, ``Selecting empirical
+  methods for software engineering research,'' in {\em Guide to advanced
+  empirical software engineering}, pp.~285--311, Springer, 2008.
+
+\bibitem{dick2010action}
+B.~Dick, {\em Action research theses}.
+\newblock PhD thesis, Thesis resource paper. You want to do an action research
+  thesis, 2010.
+
+\bibitem{greenwood2006introduction}
+D.~J. Greenwood and M.~Levin, {\em Introduction to action research: Social
+  research for social change}.
+\newblock SAGE publications, 2006.
+
+\bibitem{sjoberg2007future}
+D.~I. Sjoberg, T.~Dyba, and M.~Jorgensen, ``The future of empirical methods in
+  software engineering research,'' in {\em Future of Software Engineering,
+  2007. FOSE'07}, pp.~358--378, IEEE, 2007.
+
+\bibitem{seaman2009using}
+C.~Seaman, ``Using qualitative methods in empirical studies of software
+  engineering,'' in {\em Short course. In: VI Experimental Software Engineering
+  Latin American Workshop (ESELAW 2009), S{\~a}o Carlos, Brazil, November},
+  2009.
+
+\bibitem{taylor1984introduction}
+S.~J. Taylor and R.~Bogdan, ``Introduction to qualitative research methods: The
+  search for meaning,'' 1984.
+
+\bibitem{wagner2016analysing}
+S.~Wagner and D.~M. Fern{\'a}ndez, ``Analysing text in software projects,''
+  {\em arXiv preprint arXiv:1612.00164}, 2016.
+
+\bibitem{cooper1976development}
+A.~E. Cooper and W.~T. Chow, ``Development of on-board space computer
+  systems,'' {\em IBM Journal of Research and Development}, vol.~20, no.~1,
+  pp.~5--19, 1976.
+
+\bibitem{dart1992overview}
+S.~A. Dart, R.~J. Ellison, P.~H. Feiler, and A.~N. Habermann, ``Overview of
+  software development environments,'' 1992.
+
+\bibitem{GitflowWorkflow}
+``Gitflow workflow.'' URL:
+  \url{https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow}.
+
+\bibitem{fisher2013utilizing}
+J.~Fisher, D.~Koning, and A.~Ludwigsen, ``Utilizing atlassian jira for
+  large-scale software development management,'' in {\em 14th International
+  Conference on Accelerator \& Large Experimental Physics Control Systems
+  (ICALEPCS)}, 2013.
+
+\bibitem{jiraIssue}
+``Atlassian documentation - what is an issue.'' URL:
+  \url{https://confluence.atlassian.com/jira064/what-is-an-issue-720416138.html}.
+
+\bibitem{bacchelli2013expectations}
+A.~Bacchelli and C.~Bird, ``Expectations, outcomes, and challenges of modern
+  code review,'' in {\em Proceedings of the 2013 international conference on
+  software engineering}, pp.~712--721, IEEE Press, 2013.
 
 \bibitem{rtemsIntro}
 ``Getting started with rtems,'' tech. rep., 2008.
 
-\bibitem{GitflowWorkflow}
-``Gitflow workflow.''
-  \url{https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow}.
+\bibitem{finkelstein1992viewpoints}
+A.~Finkelstein, J.~Kramer, B.~Nuseibeh, L.~Finkelstein, and M.~Goedicke,
+  ``Viewpoints: A framework for integrating multiple perspectives in system
+  development,'' {\em International Journal of Software Engineering and
+  Knowledge Engineering}, vol.~2, no.~01, pp.~31--57, 1992.
 
 \bibitem{chacon2011git}
 S.~Chacon, ``Git documentation,'' 2011.
+
+\bibitem{dabbish2012social}
+L.~Dabbish, C.~Stuart, J.~Tsay, and J.~Herbsleb, ``Social coding in github:
+  transparency and collaboration in an open software repository,'' in {\em
+  Proceedings of the ACM 2012 conference on Computer Supported Cooperative
+  Work}, pp.~1277--1286, ACM, 2012.
+
+\bibitem{stallman1991gnu}
+R.~M. Stallman and R.~McGrath, ``Gnu make-a program for directing
+  recompilation,'' 1991.
+
+\bibitem{ARMPartialLinking}
+``Arm compiler toolchain,'' tech. rep., 2012.
+
+\bibitem{stallman1987c}
+R.~M. Stallman and Z.~Weinberg, ``The c preprocessor,'' {\em Free Software
+  Foundation}, 1987.
 
 \bibitem{koebel2010scoc3}
 F.~Koebel and J.-F. Coldefy, ``Scoc3: a space computer on a chip: an example of
   successful development of a highly integrated innovative asic,'' in {\em
   Proceedings of the Conference on Design, Automation and Test in Europe},
   pp.~1345--1348, European Design and Automation Association, 2010.
+
+\bibitem{hjortnaes1997software}
+K.~Hjortnaes, S.~Mejnertsen, S.~Ekholm, P.~Hougaard, and J.~van~der Wateren,
+  ``Software validation facilities,'' in {\em Data Systems in Aerospace-DASIA
+  97}, vol.~409, p.~375, 1997.
 
 \end{thebibliography}
