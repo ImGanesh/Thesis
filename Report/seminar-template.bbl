@@ -1,12 +1,26 @@
 \begin{thebibliography}{10}
 
+\bibitem{cohen2003agile}
+D.~Cohen, M.~Lindvall, and P.~Costa, ``Agile software development,'' {\em DACS
+  SOAR Report}, vol.~11, 2003.
+
 \bibitem{beck2000extreme}
 K.~Beck, {\em Extreme programming explained: embrace change}.
 \newblock Addison-Wesley professional, 2000.
 
+\bibitem{jenkinsDoc}
+``Jenkins documentation.'' URL: \url{https://jenkins.io/doc/}, 2012.
+
 \bibitem{fowler2006continuous}
 M.~Fowler and M.~Foemmel, ``Continuous integration,'' {\em Thought-Works
   http://www. thoughtworks. com/Continuous Integration. pdf}, p.~122, 2006.
+
+\bibitem{GNUMakeManual}
+R.~M. Stallman, R.~McGrath, and P.~D. Smith, ``Gnu make manual,'' {\em Free
+  Software Foundation}, vol.~3, 2014.
+
+\bibitem{dockter2015gradle}
+H.~Dockter and A.~Murdoch, ``Gradle user guide,'' 2015.
 
 \bibitem{duvall2007continuous}
 P.~M. Duvall, {\em Continuous integration. Improving Software Quality and
@@ -44,10 +58,6 @@ H.~H. Olsson, H.~Alahyari, and J.~Bosch, ``Climbing the" stairway to heaven"--a
 S.~I. Feldman, ``Make — a program for maintaining computer programs,'' {\em
   Software: Practice and Experience}, vol.~9, no.~4, pp.~255--265, 1979.
 
-\bibitem{GNUMakeManual}
-R.~M. Stallman, R.~McGrath, and P.~D. Smith, ``Gnu make manual,'' {\em Free
-  Software Foundation}, vol.~3, 2014.
-
 \bibitem{RecursiveMake}
 ``Recursive use of make.'' URL:
   \url{https://www.gnu.org/software/make/manual/html_node/Recursion.html}.
@@ -68,9 +78,6 @@ A.~Ant, ``Apache software foundation.'' URL:
 A.~Williamson, J.~Gibson, A.~Wu, and K.~Pepperdine, {\em Ant Developer's
   Handbook}.
 \newblock Sams Publishing, 2002.
-
-\bibitem{dockter2015gradle}
-H.~Dockter and A.~Murdoch, ``Gradle user guide,'' 2015.
 
 \bibitem{van2002domain}
 A.~Van~Deursen and P.~Klint, ``Domain-specific language design requires feature

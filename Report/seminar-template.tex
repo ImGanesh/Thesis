@@ -85,26 +85,18 @@ development project. This provides for a mechanism to prevent human errors durin
 the build and test of the developed software, as well as help release the product on-time.
 Other benefits include capturing errors before they start accumulating, easier integration
 at defined intervals over the course of software development, and faster, comprehensive
-feedback to developers. However, in an embedded domain, adopting CI is a challenging
-activity. Binaries need to be cross compiled to different targets, extensive tool chain
-arguments, various build configurations and performance issues especially in validation
-testing and in static code analysis.
-\par The existing literature provides little information to address the effect that the build
+feedback to developers. However, in an embedded domain, adopting CI is a challenging activity. If the project size and complexity is high, there will be a large number of activities which need to be covered in the CI workflow. Not all tools used in software development provide seamless interfaces to the CI tool. There is a need to design the interface framework which can quickly grow to be complex and time consuming. 
+\par An effective CI workflow follows a set of best practices. Build automation is one of them. The existing literature does not provide comprehensive information to address the effect that the build
 automation tools have on the design and implementation of a CI framework in an embedded
-avionics domain. Tools like Make and Ant are primarily used for the build and
-test stages of development. However, these tools do not inherently provide mechanisms
-to integrate with CI tools. There is a need to design a framework to interface the build
-system with a CI tool. This adds to the complexity of the project.
-This thesis aims to design a CI workflow for an On-Board Software (OBSW) development
-project. The study aims to bring out the challenges of using a conventional imperative
+avionics domain. Tools like GNU Make and Apache Ant are primarily used for the build and
+test stages of development. However, these build tools are imperative in nature. As the build logic increases in complexity, the conciseness of build scripts reduces. The build run times should also not be large as the feedback cycle would be longer. 
+\par This study aims to design a CI workflow for a space satellite On-Board Software (OBSW) development
+project. The objective is to bring out the challenges of using a conventional imperative
 build approach during the set-up of a CI framework for the project. The proposal
 is to adopt a build tool which is based on declarative build paradigms and provide
-for mechanisms to easily integrate with CI tools. This study is as an action research
-(AR) on employing an alternative build automation system with study results expressed
-as quantitative or qualitative metrics. A prototypical CI chain will be implemented
-with a Jenkins CI server and Gradle as the primary build tool. Parameters such as
-performance, maintenance complexity of build logic, reproducibility of builds are some
-of the parameters under study.
+for mechanisms to easily integrate with CI tools. This study is carried out as an action research
+(AR) with study results expressed as quantitative or qualitative metrics. A prototypical CI chain will be implemented
+with a Jenkins CI server and Gradle as the primary build tool. Parameters such as performance, maintenance complexity of build logic, and features such as integration to a CI tool, reproducible builds will be investigated. 
 
 \pagebreak
 \tableofcontents 
@@ -113,10 +105,35 @@ of the parameters under study.
 \newpage
 
 \section{Introduction}
-\par Software development teams look to maximize value of the product being developed throughout the process lifecycle. Hence, they adopt Agile methodologies which focus on rapid delivery of valuable software through iterative planning and quick feedback loops. This provides several advantages such as easy adaptability to changing requirements, enhanced visibility of the project and on time release of software. Extreme Programming (XP) has evolved as one of the popular Agile methodologies. 
+\par Software development in embedded critical space avionics is large, complex and expensive. Experience suggests that software problems might result in failed missions. This study is done in collaboration with the department of On-Board Software (OBSW) development, Airbus Defence and Space GmbH in Friedrichshafen. The project under study is the development of central flight software (CSW) which runs on-board a satellite.
+\par Software development teams look to maximize value of the product being developed throughout the process lifecycle. Hence, they adopt Agile methodologies\cite{cohen2003agile} which focus on rapid delivery of valuable software through iterative planning and quick feedback loops. This provides several advantages such as easy adaptability to changing requirements, enhanced visibility of the project and on-time release of software. Extreme Programming (XP)\cite{beck2000extreme} has evolved as one of the popular Agile methodologies. XP propagates Continuous Integration (CI). 
+\par Continuous Integration (CI) is a practice where developers in a system push to a central mainline several times. The software development environment containing the CI tools and other build tools perform the builds and tests in an automated manner. The developers then expect to receive status of the builds and tests quickly. The CI tool consists of an open source automation server such as Jenkins\cite{jenkinsDoc}. The Figure~\ref{fig:ci-overview-block} shows a global view of the CI concept. A detailed framework definition will be provided in subsequent sections. 
+\begin{figure}[!ht]
+\centering
+\hspace*{-1cm}
+	\includegraphics[scale=0.59,clip, trim=0cm 1cm 0cm 1cm]{CI-workflow.pdf}
+\caption{Block Diagram to show Overview of CI concept}
+\label{fig:ci-overview-block}
+\end{figure}
+\par The nature of the development project influences the type of CI workflow that the project adopts. For starters, the terminology used in an embedded software development project is slightly different from other development projects. For example, the term build in embedded domain mostly refers to the compile \& link process only. The unit testing is handled separately as is verification \& validation testing. If Git is the version control system in use, then the quality standards on the different types of branches are also quite different. The \courierword{master} could be chosen as the branch which is stable at all points of time. Hence, quality checks at \courierword{master} could be significantly more in number than the other branches. 
+\par Continuous Integration (CI) advocates having multiple commits into the central mainline every day. For every single commit, the build is executed from scratch. CI also advocates a higher integration frequency. However, depending on project specific constraints, the development team is allowed to fix the integration frequency. In any case, a team utilizing effective CI model will treat the periodic integration as a non-event\cite{fowler2006continuous}.  
+\par The process of automatically creating a software build for a set of source files is called as build automation. It includes activities such as compiling, linking, running unit tests and running quality checks (eg. Static Code Analysis) on the source code. For automating software builds, a large number of tools are available. This thesis incorporates discussion of two such tools, GNU Make\cite{GNUMakeManual} and Gradle\cite{dockter2015gradle}, in detail. In the field of software builds, an \emph{execution unit} (EU) is defined as an activity which the build tool carries out. In Make or Ant they are called as targets. In Gradle they are termed as tasks. Examples for EU's can be compilation of C sources, or cleaning of generated object files for a new build, creation of an executable and much more. Usually, EU's \textit{depend on} other EU's. The build tools also offer a large number of ways in which this dependencies can be configured. A \emph{control flow} is the path which the build tool traverses in a build script to execute the build logic. For example, generation of an executable from C sources involves compilation of the sources, then a stage of link followed by packaging into a binary. Essentially, EU's along with their dependencies combine to define the control flow in software builds. The order of execution of the various EU's may be different and is based on the build author's requirement. Hence, a build script usually contains several targets which in turn means several control flows.  
+\par Two important terms that can be associated when discussing build systems are \emph{expressiveness} and \emph{conciseness}. Expressiveness is the capability of the build tool to describe complex build behaviour. Conciseness is when the build tool expresses the build logic in an easy to understand manner. In other words, the control flow of the build logic should be realized by the users of a team without difficulty. More often than not, these properties do not scale proportionately. When build logic tends to become complex, the conciseness of the build script decreases. This trend can be traced back to the build tool that is used to describe the logic. To express this in the form of a graph, consider Figure~\ref{fig:expr-vs-conc}. The traditional build tools such as Make or Ant generally fit into quadrants two or three of the graph. Modern build tools such as Gradle try to be concise at the same time provides opportunity to represent complex build behaviour. Hence, they are slotted in at quadrant four. 
+
+\begin{figure}[!ht]
+\centering
+%\hspace*{-2ccm}
+	\includegraphics[scale=0.9, clip, trim=6cm 7cm 0cm 4cm]{ExpVsConc.pdf}
+\caption{Expressiveness vs Conciseness - How the different build tools fit into this comparison graph?}
+\label{fig:expr-vs-conc}
+\end{figure}
+\par A classification of build tools can be done on the basis of how they are used by the build author. One type is the \emph{imperative} build system. Examples include GNU Make or Apache Ant. This means that it is the responsibility of the build author to define what the build should do and also how the automation tool should do it. In case of a \emph{declarative} build system, the build author is responsible for stating what the build logic should do. The build automation tool attempts to figure out how the requirements are to be met. This convention over configuration approach provided by declarative build systems enable to increase the conciseness of the build logic. 
+\par Build automation is generally considered as a CI best practice\cite{fowler2006continuous}. To interface the build tool with a CI tool, a framework needs to designed and implemented. This is called \emph{glue logic}. The implementation of this glue logic is done usually using shell scripting. However, if the build logic is inherently complex, this interface might be difficult to establish and maintain. 
+\par This study attempts to provide a method to quantize build systems. This research is implemented as an Action Research (AR). A detailed analysis of the existing build system is done. A discussion with the developers is performed to identify build activities which they commonly use and the challenges that they face with these activities. This initial phase gives rise to a set of observations, opinions and ideas. They are then taken into consideration to form a hypothesis of a new CI framework. A bottom-up approach towards Continuous Integration is done. A CI workflow is created based on the development Gitflow workflow. And the best practices of CI are then applied to this framework. A declarative build tool (Gradle) is used to express the build logic. At the time of design, the developer requirement as well as build design best practices are taken into consideration. A glue logic free system is one of the objectives of this study. This objective is achieved by extending Gradle and leveraging inherent CI tool (Jenkins) functionalities. Better performance is targeted. A reduction in the build-run time can translate to faster feedback and hence on-time release of software. Good software engineering practices are adopted, optimizations are studied, and continuous iterative development is carried out to achieve faster and comprehensive builds. The study also provides a definition for maintenance complexity of build logic when implemented in Gradle. The embedded nature of the project and inherent design methodology of existing build logic are two main factors influencing this definition. Opinions and experiences of the users of the system are taken into account. Additionally, literature covering similar studies are investigated and the knowledge has been incorporated in this study. Thus, the results for measuring complexity that are obtained are a mixture of quantitative and qualitative metrics. Taking the outcomes of these activities, the proposed hypothesis was verified. 
 \\
+\linebreak
 \textbf{Thesis Overview} \\
-This thesis is divided into several sections. Section 2 deals with the background behind the study. It introduces two important components - Continuous Integration (CI) and Build Automation tools. It also provides an overview of the Action Research (AR) methodology on which this study is based. In addition, it describes the Qualitative methods employed in the study. Since this study is performed in an industry, Section 3 provides a detailed report on the context of the software development project in the concerned industry. It describes an overview of the project, the tools used and the workflows adopted. Section 4 explores the Gradle build system which is designed for the project. It covers the terminology used and detailed design descriptions. Section 5 defines the Continuous Integration (CI) workflow designed for the project as part of the study, its benefits and the challenges that were mitigated. Section 6 is an overview of the evaluation done to quantize build systems and the results obtained. Section 7 provides a Summary of the thesis as well as proposes future work that can be undertaken as an extension of this study. 
+This thesis is divided into seven sections. Section 2 deals with the background behind the study. It introduces two important components - Continuous Integration (CI) and Build Automation tools. It also provides an overview of the Action Research (AR) methodology on which this study is based. In addition, it describes the Qualitative methods employed in the study. Since this study is performed in an industry, Section 3 provides a detailed report on the context of the software development project in the concerned industry. It describes an overview of the project, the tools used and the workflows adopted. Section 4 explores the Gradle build system which is designed for the project. It covers the terminology used and detailed design descriptions. Section 5 defines the Continuous Integration (CI) workflow designed for the project as part of the study, its benefits and the challenges that were mitigated. Section 6 is an overview of the evaluation done to quantize build systems and the results obtained. Section 7 provides a Summary of the thesis as well as proposes future work that can be undertaken as an extension of this study. 
 \pagebreak
 \section{Background and Research Approach}
 
@@ -158,7 +175,7 @@ One primary objective to invest in CI is to receive fast and comprehensive feedb
 \par The GNU Make build automation tool provides advanced features to enable build author's to describe complex build logic. It provides the concept of implicit rules\cite{GNUMakeManual}. These rules reduce the work load on the build author as it forces Make to use customary techniques for the desired behaviour. For exaple, there are built-in implicit rules which use several Make provided variables in their \textit{recipes} like CFLAGS. There is a possibility to use the Recursive Make\cite{RecursiveMake} functionality. This practice is commonly used when there are separate Makefiles within each subsystem of a larger system. In this case, Make recurses through each of the subsystems and executes the \textit{targets} accordingly. However, the harmful effects of using Recursive Make to software projects is well researched\cite{miller1998recursive}. GNU Make also provides a mechanism to generate dependency information automatically\cite{AutoDepGen}. 
 \paragraph{Ant}
 \par Ant\cite{ant2004apache} is an open source, software build automation tool similar to Make but targeted primarily for Java sources. It was developed as part of the Apache Tomcat project in 2000. It requires a Java platform, and uses an XML to represent the build logic. The default XML used by Ant is the \courierword{build.xml}. 
-\par Each Ant build file consists of a project and atleast one target. Targets are further made up of Ant tasks which can be executed to obtain the desired build behaviour. \\
+\par Each Ant build file consists of a project and atleast one target. Targets are further made up of Ant tasks which can be executed to obtain the desired build behaviour.
 \begin{itemize}
 \item {\textbf{Project}}\\
 Projects are represented in XML using the \textit{\textless project\textgreater}  tag. Three attributes are defined by the Project element. \textit{name} is an optional attribute which denotes the name of the project. \textit{default} denotes the default target for the build script. Any Project may contain multiple number of targets. This attribute defines which target should be executed by default. An optional attribute \textit{basedir} which denotes the root directory for the project. 
@@ -173,8 +190,6 @@ Gradle\cite{dockter2015gradle} is also an open source build automation tool but 
 \par Gradle defines \textit{\textbf{tasks}} which is an activity carried out during the build such as compile, link or clean. The default name of the build file is \courierword{build.gradle}. Gradle is based on a graph of \textit{task} dependencies, where the \textit{tasks} do the actual work. These \textit{tasks} could be custom tasks created by a build author. It also defines some default \textit{tasks} depending on the configuration that has been mentioned in the DSL. This can be explained with the help of an example.
 
 \begin{figure}[!ht]
-\caption{An example of a \courierword{build.gradle}}
-\label{fig:gradle-build-file-example}
 \lstset{language=Java,breakatwhitespace=false,
         commentstyle=\color{red},
         breaklines=true, basicstyle=\small\fontfamily{pcr}\selectfont
@@ -192,12 +207,12 @@ model {
     }
 }
 \end{lstlisting}
+\caption{An example of a \courierword{build.gradle}}
+\label{fig:gradle-build-file-example}
 \end{figure}
 \par The first line in Figure~\ref{fig:gradle-build-file-example} includes the \courierword{C plugin} into the build file. This line extends the Gradle project's capabilities. It configures the project based on the conventions described further in the build script. For example, it adds some specific tasks or configures defaults. The Gradle model is a container for configuring the build logic. Based on the DSL specified within the model, Gradle recognizes key configurations and creates a control flow for the build by mapping a set of default tasks which the build author can leverage. For the above mentioned build file, Gradle creates the tasks shown in Figure~\ref{fig:example-task-gradle}. 
 
 \begin{figure}[!ht]
-\caption{The output of \courierword{gradle tasks} command}
-\label{fig:example-task-gradle}
 \lstset{breakatwhitespace=false,
         commentstyle=\color{red},
         breaklines=true, basicstyle=\small\fontfamily{pcr}\selectfont
@@ -212,6 +227,8 @@ installMainExecutable - Installs a development image of executable 'main:executa
 mainExecutable - Assembles executable 'main:executable'.
     linkMainExecutable - Links executable 'main:executable'
 \end{lstlisting}
+\caption{The output of \courierword{gradle tasks} command}
+\label{fig:example-task-gradle}
 \end{figure}
 \par The declarative nature of the build tool can be visualized using the above mentioned example. Based on the configuration defined by the build author, Gradle creates the build, clean, install, and link tasks for generating an executable. A detailed study of Gradle's methodology and it's fit in an embedded space avionics software development project will be analyzed in subsequent sections. 
 
@@ -222,9 +239,9 @@ mainExecutable - Assembles executable 'main:executable'.
 
 \begin{figure}[!ht]
 \centering
+\includegraphics[scale=0.99]{AR.png}
 \caption{Action Research (AR) cycle consisting of three distinct stages}
 \label{fig:ar-cycle}
-\includegraphics[scale=0.99]{AR.png}
 \end{figure}
 
 \par AR, when considered as a form of study, also presents challenges to be addressed. Since, AR brings about a notion of change to the project, an alignment with organizational level objectives need to be maintained. Also, the problem of researcher bias at the time of research might be a risk in the study. Finally, the cost of carrying out AR is to be estimated as it could prove to be expensive\cite{easterbrook2008selecting}. 
@@ -233,11 +250,11 @@ mainExecutable - Assembles executable 'main:executable'.
 \subsubsection{Qualitative Metrics in Study}
 Quantizing build automation tools is inherently a difficult proposition. This study employs qualitative methods to derive metrics based on a small subset of results. For achieving this, a formal methodology to incorporate these methods into the study is followed. Literature provides starting points to employ qualitative methods systematically\cite{seaman2009using}.  
 \par Qualitative metrics provide many advantages to the researcher. Results are richer and informative. Parameters which are hard to be expressed objectively can be explained in a subjective manner. The comments of the developers working on the project are taken into consideration and can be analyzed to offer a concise picture of the state of work.  
-\par Qualitative methods involve a phase of Data Collection followed by the phase of Data Analysis. These phases contain different methods for handling data. The methods adopted as part of this study is outlined.\\ 
-\textbf{Data Collection} \\
-This study incorporates two different data collection methods. They are \textit{Participant Observation}\cite{taylor1984introduction} and \textit{Interviews}. In \textit{Participant Observation}, the researcher collaborates with the developer in gaining knowledge of the existing system. The developer is encouraged to verbally describe the activities which he carries out so that the researcher is able to understand the process flow. Additionally, the researcher attends the developer team meetings and records key ideas expressed during the meeting. As these meetings are generally organized periodically in a software development team, the researcher is in a position to record data such as terminology used, technical information exchanged as well as identify roles of the developers within the scope of the project. The second technique, \textit{Interviews}\cite{seaman2009using}, is used specifically to collect individual developer opinions and impressions about the subject under study. The researcher has employed a semistructured interview pattern in this study. The interview begins by having specific questions and gradually proceeds towards open-ended questions. The ideas expressed by the developer was recorded by taking notes. This technique of \textit{Interviews} also provide a mechanism for the researcher to capture developer requirements in the study being carried out. \\
-\textbf{Data Analysis} \\
-Once the data has been collected through the methods described above, an analysis of the obtained data is to be conducted by the researcher. This involves two methods - \textit{Generation of Theory} and \textit{Confirmation of Hypothesis}. Based on the text which is generated by Data Collection, a preliminary processing is done. This processing is called as Coding\cite{wagner2016analysing}. Opinions which are similar or about a particular theme are grouped under a label. For example, consider the following statements made by different team members.\\
+\par Qualitative methods involve a phase of Data Collection followed by the phase of Data Analysis. These phases contain different methods for handling data. The methods adopted as part of this study is outlined.
+\par \textbf{Data Collection}
+\par This study incorporates two different data collection methods. They are \textit{Participant Observation}\cite{taylor1984introduction} and \textit{Interviews}. In \textit{Participant Observation}, the researcher collaborates with the developer in gaining knowledge of the existing system. The developer is encouraged to verbally describe the activities which he carries out so that the researcher is able to understand the process flow. Additionally, the researcher attends the developer team meetings and records key ideas expressed during the meeting. As these meetings are generally organized periodically in a software development team, the researcher is in a position to record data such as terminology used, technical information exchanged as well as identify roles of the developers within the scope of the project. The second technique, \textit{Interviews}\cite{seaman2009using}, is used specifically to collect individual developer opinions and impressions about the subject under study. The researcher has employed a semistructured interview pattern in this study. The interview begins by having specific questions and gradually proceeds towards open-ended questions. The ideas expressed by the developer was recorded by taking notes. This technique of \textit{Interviews} also provide a mechanism for the researcher to capture developer requirements in the study being carried out.
+\par \textbf{Data Analysis}
+\par Once the data has been collected through the methods described above, an analysis of the obtained data is to be conducted by the researcher. This involves two methods - \textit{Generation of Theory} and \textit{Confirmation of Hypothesis}. Based on the text which is generated by Data Collection, a preliminary processing is done. This processing is called as Coding\cite{wagner2016analysing}. Opinions which are similar or about a particular theme are grouped under a label. For example, consider the following statements made by different team members.\\
 
 \textit{Developer 1 (D1): I would like to find out if this tool would give better performance (faster builds) \ldots \\
 Developer 2(D2): The existing system takes about ten minutes to create the executable. If this time period can be reduced, it is a good thing \ldots} \\
@@ -275,17 +292,18 @@ The actual software that runs in an On Board Computer (OBC)\cite{cooper1976devel
 
 \begin{figure}[!ht]
 \centering
+%\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{SDE-Chart.png}
+\hspace*{-0.5cm}
+	\includegraphics[scale=0.6]{SDE-Chart.pdf}
 \caption{SDE set-up for AS400 Central Software Development}
 \label{fig:sde-chart}
-%\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{SDE-Chart.png}
-\includegraphics[width=\textwidth]{SDE-Chart.pdf}
 \end{figure}
 
 \subsection{Software Development in OBSW - CSW}
 This section explains the project specific terminology, structure of the source code, git workflow and the build automation methodology employed.
 \subsubsection{Terminology}
-The source code for the AS400 CSW development is organized as a hierarchy. There are five levels of elements. The top most level is the production repository. The second level contains the different aspects of production such as project specific SDE scripts, source code ('fsw' folder), and libraries to be used in unit testing. The definition of the levels below this need to be distinguished using a view model. This study defines two distinct view models\cite{finkelstein1992viewpoints} for the hierarchy. They are the Developer's view model and the Build Author's view model. \\
-\textbf{Developer's View Model}
+The source code for the AS400 CSW development is organized as a hierarchy. There are five levels of elements. The top most level is the production repository. The second level contains the different aspects of production such as project specific SDE scripts, source code ('fsw' folder), and libraries to be used in unit testing. The definition of the levels below this need to be distinguished using a view model. This study defines two distinct view models\cite{finkelstein1992viewpoints} for the hierarchy. They are the Developer's view model and the Build Author's view model.
+\par \textbf{Developer's View Model}
 \begin{itemize}
 	\item Applications - they are elements which implement functional processing that are associated with the satellite. Some examples include Data Management System (DMS) which implements data handling standards, and Attitude and Orbit Control Systems (AOCS) which maintains the orientation of the satellite.
 	\item Components - Applications can be composed of smaller entities called Components. A typical Component is a function controlling an equipment on board the satellite. 
@@ -301,8 +319,6 @@ It should also be noted that Collections do not necessarily map directly towards
 As mentioned, the AS400 Project consists of several repositories. Figure~\ref{fig:as400-top-level} shows the various repositories that are used in this study. There are dedicated repositories for production (as400prod) and Validation (as400val). There is also a repository which contains the Make based build logic that is not project specific but shared amongst various related projects. In addition it contains an interface with the SDE for tools which perform Static Code Analysis and Unit Testing. The scripts repositories contain the Glue Logic which creates the interface between the build tools and the CI tools. In addition it contains some helper scripts which allow for integration with Jenkins server. The hierarchy of the production repository is similar to the code tree shown in Figure~\ref{fig:prod-repo-structure}. Some of the Collections within these repositories are git submodules\cite{chacon2011git}. The folders in red are git submodules. The folders in blue are Constituents. The sub-directories within the folder 'fsw' are Collections. This is only an excerpt of the original structure. The actual code tree consists of a larger number of Collections and Constituents. Collections may or may not contain Constituents. The production repository as viewed from the top level of the AS400 Project is self contained.  
 
 \begin{figure}[h]
-\caption{The AS400 Project top level view.}
-\label{fig:as400-top-level}
 \noindent\fbox{%
 \parbox{\textwidth}{%
 \dirtree{%
@@ -315,10 +331,10 @@ As mentioned, the AS400 Project consists of several repositories. Figure~\ref{fi
 }
 }%
 }
+\caption{The AS400 Project top level view.}
+\label{fig:as400-top-level}
 \end{figure}
 \begin{figure}
-\caption{An excerpt of the AS400 Production Repository Structure}
-\label{fig:prod-repo-structure}
 \noindent\fbox{%
 \parbox{\textwidth}{%
 \dirtree{%
@@ -341,6 +357,8 @@ As mentioned, the AS400 Project consists of several repositories. Figure~\ref{fi
 }
 }%
 }
+\caption{An excerpt of the AS400 Production Repository Structure}
+\label{fig:prod-repo-structure}
 \end{figure}
 \subsection{Software Development Workflow}
 The AS400 CSW team employs a Gitflow Workflow\cite{GitflowWorkflow} for software development. There are five different types of branches – \courierword{master, develop, release, feature} and \courierword{bugfix} branches. 
@@ -348,9 +366,9 @@ The AS400 CSW team employs a Gitflow Workflow\cite{GitflowWorkflow} for software
 \par The \courierword{feature} and \courierword{bugfix} branches are used primarily by the developers to work on individual applications. In the organization under study, JIRA issues are called as Software Modification Requests (SMR). The \courierword{feature} branches are created when an SMR is issued. They are usually derived from the \courierword{master} branch.  It is then used by a developer (or a team of developers) to perform the modifications required by the SMR. Commits are made regularly to the branch during development. Ideally, the developers would like to receive fast feedback of the status of their commit when working with \courierword{feature} branches. If the feedback is positive, and if there is a need to merge the contents of the \courierword{feature} branch with the \courierword{develop} branch, the developers can issue a Pull Request\cite{dabbish2012social}. Just ahead of a software release, a new branch called \courierword{release} is forked off from \courierword{develop}.Ideally, this branch is used for bug fixes, documentation generation or other release-oriented activities. When it is ideal for a release, it is merged with the \courierword{master}. 
 
 \begin{figure}[!ht]
-\caption{Representation of the Gitflow Workflow containing master, feature, develop and release branches}
 %\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{Gitflow-Workflow.png}
 \includegraphics[clip, trim=0cm 5cm 0cm 0cm, width=\textwidth]{Gitflow-Workflow.pdf}
+\caption{Representation of the Gitflow Workflow containing master, feature, develop and release branches}
 \label{fig:Gitflow-workflow}
 \end{figure}%
 
@@ -360,13 +378,12 @@ The AS400 CSW team employs a Gitflow Workflow\cite{GitflowWorkflow} for software
 \subsection{Build Automation in AS400 CSW}
 This section describes in detail the tools and the methodology behind the builds in AS400. In the production environment, the builds for this project are done using GNU Make. In validation, the builds are done within the Eclipse IDE. However, as a headless framework is required for running the builds on remote machines, Apache Ant is used as the build tool. For compilation and linking, GCC tools (part of GNU software) for usage with the RTEMS operating system are used. For Java sources, an eclipse java compiler is used. 
 The build system used in the AS400 Project is an inherited system. It has been used previously on successful software projects developed on similar platforms.
+\linebreak
 \par \textbf{AS400\ Production\ Build\ Process}
 \par The next part of this section describes the build logic employed to compile and link the production sources into respective binaries at different points during the build stage. The sources are compiled using Makefiles which are defined in each of the appropriate Collection and Constituent directories within the source code tree. There are also several ‘common’ Makefiles which define variables and rules. The build system uses a recursive Make\cite{stallman1991gnu} model.   
 Essentially, the CSW is to be delivered as an executable file. To achieve this goal, the build system uses the technique of Partial Linking\cite{ARMPartialLinking}. Partial Linking generates a relocatable output file which can in turn be used as an input to a linker. It can be achieved easily by appending the \courierword{-r} option to linker arguments. When Partial Linking is invoked, the unresolved references remain unresolved, i.e the errors which a linker raises in normal operation are suppressed. Additionally, this method of linking eliminates duplicate copies of debug sections and merges the symbol table into one. The output of this link stage produces a file which is called as Partially Linked Object (PLO) file.
 \par Assume we are considering the AOCS collection in the source tree. It is represented in Figure~\ref{fig:source-tree-collection-constituent}.There are Makefiles within each Constituent and Sub-Constituent directories (in red) as well as within the Collection (in blue). The content of the Makefiles at Collection level and Constituent levels are shown in the Figures~\ref{fig:makefile-aocs} and~\ref{fig:makefile-aocsApFw}. 
 \begin{figure}[!ht]
-\caption{Source Tree of one of the Collections containing Constituents and Sub-Constituents}
-\label{fig:source-tree-collection-constituent}
 \noindent\fbox{%
 \parbox{\textwidth}{%
 \dirtree{%
@@ -409,12 +426,12 @@ Essentially, the CSW is to be delivered as an executable file. To achieve this g
 }
 }%
 }
+\caption{Source Tree of one of the Collections containing Constituents and Sub-Constituents}
+\label{fig:source-tree-collection-constituent}
 \end{figure}
 
 \begin{figure}[!ht]
 \begin{minipage}[t]{.5\textwidth}
-\caption{Makefile for 'aocs' Collection}\par\strut
-\label{fig:makefile-aocs}
 \lstset{language=make,breakatwhitespace=false,xleftmargin=3.4pt,xrightmargin=3.4pt,
         commentstyle=\color{red},
         breaklines=true, basicstyle=\scriptsize
@@ -444,10 +461,10 @@ EXTERNAL_LIB_INST =libaocsApFw.o\
 #------------------------
 include $(CPL_REP_MAKE)/Make.rules
 \end{lstlisting}
+\caption{Makefile for 'aocs' Collection}\par\strut
+\label{fig:makefile-aocs}
 \end{minipage}%
 \begin{minipage}[t]{.5\textwidth}
-\caption{Makefile for 'aocsApFw' Constituent}
-\label{fig:makefile-aocsApFw}
 \lstset{language=make,,xrightmargin=3.4pt,,xleftmargin=3.4pt,
         commentstyle=\color{red},
         breaklines=true, basicstyle=\scriptsize, showlines=true
@@ -479,6 +496,8 @@ include $(CPL_REP_MAKE)/Make.rules
 
 
 \end{lstlisting}
+\caption{Makefile for 'aocsApFw' Constituent}
+\label{fig:makefile-aocsApFw}
 \end{minipage}
 \end{figure}
 \par As this example deals with invoking Make from the aocs Collection level, the process recurses through the various Constituents within this level. Some Constituents like 'aocsEquipments' contain further Sub-Constituents. The invocation also recurses to those levels. The default target defined in these Makefiles will be executed. In this case, it is \courierword{linkpart}. Initially, the sources within the Constituent or Sub-Constituent directories are compiled. For Constituents which contain Sub-Constituents, each Sub-Constituent will then perform a partial link on the generated objects. Constituents which do not contain Sub-Constituents also perform a partial link on its generated objects. This produces a single Partially Linked Object (PLO) file at the respective Constituent or Sub-Constituent level. For Constituents which contain Sub-Constituents, the Makefile at the Constituent Level then performs a partial link on all PLO's generated by the Sub-Constituents. This gives rise to a PLO for that Constituent. Once all Constituents have generated their PLO's, the process now shifts to the Collection Level. The Makefile at the Collection level does the next stage of link. Here all the PLO's produced at its Constituent levels are again partially linked. The build process is so designed that every PLO that is generated is stored at a level higher than the directory in which the \courierword{linkpart} target is executed. This is a common behaviour exhibited by all Collections in the AS400 source tree. As mentioned earlier, as all Collections are located within the 'fsw' directory, all PLO's of the various Collections are written to a 'lib' folder also present within this directory. At the time of generating the complete CSW executable, there is a final link stage where all the PLO's of the different Collections are linked together to produce the software executable. Alternatively, depending on the target defined in a Makefile, the build system also provides for building a static library from the sources. For certain Collections like 'infra', these libraries are used at the final link stage to create the Executable. Hence, it can be observed that three different types of binaries can be obtained - PLO's, executables and Static Libraries. 
@@ -486,22 +505,22 @@ include $(CPL_REP_MAKE)/Make.rules
 \par The project also defines two other variants based on the platform for which the sources are compiled. They are the SCOC3\cite{koebel2010scoc3} and native PC. It should be noted that not all sources in the tree can be compiled for PC. A good example is the 'startup' Collection which contains assembler sources. Hence, the notion of a complete CSW executable for a PC does not exist. However, in the realm of Unit Testing, the compilation for PC platform is  important for capturing bugs. For producing variants depending on the platform, different tool chains are used. For SCOC3, the GNU sparc-rtems compiler and linker are used while for PC the native GNU compiler and linker packages are used. The existing build systems allows for generation of these variants also based on a command line property \courierword{CPU}.
 \par In addition to compilation, partial link and link, the build system provides targets for several other activities such as Static Code Analysis, Clean, Linecounter, and Code Instrumentation. The scope of this study does not cover all these targets comprehensively. However, some of these targets are handled and documented wherever applicable. 
 \par Now, let us analyze the Makefiles in Figures~\ref{fig:makefile-aocs} and~\ref{fig:makefile-aocsApFw} . Each of these Makefiles includes the ‘common’ Makefile which is called Make.rules. It is like a root Makefile which defines and describes the targets used in these Makefiles. As shown in the figure \courierword{linkpart} is the default target in both these Makefiles. The activity carried out in these Makefiles is partial linking. In the Constituent's Makefile, the variable SRC determines the sources that need to be built. The EXTRA\_INCLUDE variable adds a set of paths which the compiler traverses through to find the include headers for the sources. In the Makefile at Collections level, the EXTERNAL\_LIB variable defines various partially linked objects which need to be sources to the linker. The LIBDIR variable defines the directory to which the output of the link process would be written to.
-
-\par \textbf{AS400 Validation} \\
-The validation activities on AS400 CSW is discussed next. OBSW development requires careful and comprehensive validation activities to ensure that the correct software is delivered. For Validation activities, the AS400 team uses a Software Validation Facility (SVF)\cite{hjortnaes1997software}. It is a software test bench which provides a simulated model of the environment where the software is expected to run. It is a hardware-in-loop emulation system as it contains a copy of the target space processor. For the project under study, the SVF is offered by an external team as a package which can used at the time of compilation of test sequences. Several versions of the SVF are released at various points in the software development and the validation team incorporates these changes appropriately. 
+\linebreak
+\par \textbf{AS400 Validation}
+\par The validation activities on AS400 CSW is discussed next. OBSW development requires careful and comprehensive validation activities to ensure that the correct software is delivered. For Validation activities, the AS400 team uses a Software Validation Facility (SVF)\cite{hjortnaes1997software}. It is a software test bench which provides a simulated model of the environment where the software is expected to run. It is considered as an hardware-in-loop emulation system as it contains a copy of the target space processor. For the project under study, the SVF is offered by an external team as a package which can used at the time of compilation of test sequences. Several versions of the SVF are released at various points in the software development and the validation team incorporates these changes appropriately. 
 \par All the sources required for validation are contained within the repository 'as400val'. The validation framework for this project is in Java. An Eclipse based IDE is used by the validation team members to build and run their tests on the generated CSW Executable. The validation tests contain several Collections based on the Applications to be tested. These Collections contain test sequences in Java. These validation test sequences require test classes developed by the team as well as the SVF packages in the classpath during compile time. Hence, a JAR file containing all these required classes is prepared. For the purpose of a headless build of this JAR, an Ant build xml is created. This is similar to the one shown in Figure~\ref{fig:build-xml-validation}.
 
 \begin{figure}[!ht]
-\caption{build.xml for AS400 Validation}
-\label{fig:build-xml-validation}
-\lstset{language=xml,
+\lstset{language=XML,
 		commentstyle=\color{red},
-		keywords=\color{blue}
-    	breaklines=true,
-    	basicstyle=\scriptsize
+		keywords=\color{blue},
+		breaklines=true,
+    	basicstyle=\scriptsize,
+    	morekeywords={xml, version, encoding, project, target, property, mkdir, javac, classpath, jar, copy}
 }
 \begin{lstlisting}[frame=single][t]
-<project >
+<?xml version="1.0" encoding="utf-8"?>
+<project>
 
     <property environment="env"/>
     
@@ -513,7 +532,7 @@ The validation activities on AS400 CSW is discussed next. OBSW development requi
 
     <target name="make">
         <mkdir dir="container"/>
-	<javac srcdir="${env.CPL_REP_BASE}/simopsenv/src/obswTest destdir="container" 
+	<javac srcdir="${env.CPL_REP_BASE}/simopsenv/src/obswTest;${env.CPL_REP_BASE}/test/benchConfig" destdir="container" 
 	source="1.8" target="1.8" encoding="Cp1252" nowarn="true">
 		<classpath>
 		<fileset dir="/data/products/libs/">
@@ -526,12 +545,13 @@ The validation activities on AS400 CSW is discussed next. OBSW development requi
 
 	    <jar destfile="nsvf.jar"
 		       basedir="container"
-		       includes="**/*"
-				       />
+		       includes="**/*" />
 	<copy file="nsvf.jar" todir="${env.NSVF_DIR}/svfJarfiles/" />
     </target>
 </project>
 \end{lstlisting}
+\caption{\courierword{build.xml} for AS400 Validation}
+\label{fig:build-xml-validation}
 \end{figure} 
 
 \par After the JAR file is generated, the required test sequence is compiled and executed using shell scripts provided by the SDE. These scripts are capable of running tests individually or in batch mode. Alternatively, the IDE provides a tool called TMA to run the tests and generate test reports. Hence, the JAR file lies in the classpath of the test sequence execution command. It should be noted that the developer test classes which are a part of the JAR may be modified differently by the different members of the validation team. One developer should not break another developer's tests. Hence, the framework is so designed to compile all test sequences after the JAR has been created. This detects if any of the test sequences would be broken as a result of changes induced on the sources in the JAR. 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.5.22)  28 FEB 2017 15:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.5.22)  1 MAR 2017 16:46
 entering extended mode
 **seminar-template.tex
 ("D:\Master Thesis\Thesis\Report\seminar-template.tex"
@@ -767,106 +767,145 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 \tf@toc=\write4
  [3]
 ("D:\Master Thesis\Thesis\Report\seminar-template.lof"
-LaTeX Font Info:    Try loading font information for OT1+lmss on input line 2.
+LaTeX Font Info:    Try loading font information for OT1+lmss on input line 4.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ot1lmss.fd"
 File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <12> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 2.
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 4.
 )
 \tf@lof=\write5
- [4] [5] [6]
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 150--156
+ [4]
+<./Figures/CI-workflow.pdf, id=220, 845.55902pt x 598.03424pt>
+File: ./Figures/CI-workflow.pdf Graphic file (type pdf)
+
+<use ./Figures/CI-workflow.pdf>
+Package pdftex.def Info: ./Figures/CI-workflow.pdf used on input line 114.
+(pdftex.def)             Requested size: 498.8755pt x 319.2632pt.
+
+Overfull \hbox (24.90288pt too wide) in paragraph at lines 113--115
+ []|  [] 
+ []
+
+[5] [6 <D:/Master Thesis/Thesis/Report/Figures/CI-workflow.pdf>]
+<./Figures/ExpVsConc.pdf, id=272, 845.55902pt x 598.03424pt>
+File: ./Figures/ExpVsConc.pdf Graphic file (type pdf)
+
+<use ./Figures/ExpVsConc.pdf>
+Package pdftex.def Info: ./Figures/ExpVsConc.pdf used on input line 126.
+(pdftex.def)             Requested size: 607.35265pt x 256.54617pt.
+
+Overfull \hbox (159.2217pt too wide) in paragraph at lines 126--127
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 132--138
+
+ []
+
+[7 <D:/Master Thesis/Thesis/Report/Figures/ExpVsConc.pdf>] [8] [9]
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 167--173
 [] 
  []
 
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 161--162
+[10]
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 180.
 
- []
-
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 163.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 163.
-LaTeX Font Info:    Try loading font information for OML+lmr on input line 164.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 180.
+LaTeX Font Info:    Try loading font information for OML+lmr on input line 181.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omllmr.fd"
 File: omllmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OML/lmr/m/it' in size <12> not available
-(Font)              Font shape `OML/lmm/m/it' tried instead on input line 164.
- [8]
+(Font)              Font shape `OML/lmm/m/it' tried instead on input line 181.
+ [11]
 (C:\Users\Ram\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-LaTeX Font Info:    Try loading font information for OMS+pcr on input line 185.
+LaTeX Font Info:    Try loading font information for OMS+pcr on input line 200.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omspcr.fd"
 File: omspcr.fd 
 )
 LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 185.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 200.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 207.
- [9]
-<./Figures/AR.png, id=304, 269.20575pt x 104.18925pt>
+(Font)              <10.95> on input line 222.
+ [12]
+<./Figures/AR.png, id=406, 269.20575pt x 104.18925pt>
 File: ./Figures/AR.png Graphic file (type png)
  <use ./Figures/AR.png>
-Package pdftex.def Info: ./Figures/AR.png used on input line 227.
+Package pdftex.def Info: ./Figures/AR.png used on input line 242.
 (pdftex.def)             Requested size: 266.5145pt x 103.14766pt.
 
-[10 <D:/Master Thesis/Thesis/Report/Figures/AR.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 236--241
-
- []
-
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 243--244
+[13 <D:/Master Thesis/Thesis/Report/Figures/AR.png>] [14]
+Underfull \hbox (badness 10000) in paragraph at lines 257--258
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 249--250
+Underfull \hbox (badness 10000) in paragraph at lines 260--261
 
  []
 
-[12] [13] <./Figures/SDE-Chart.pdf, id=360, 845.55902pt x 598.03424pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+
+ []
+
+[15] [16] <./Figures/SDE-Chart.pdf, id=462, 845.55902pt x 598.03424pt>
 File: ./Figures/SDE-Chart.pdf Graphic file (type pdf)
 
 <use ./Figures/SDE-Chart.pdf>
-Package pdftex.def Info: ./Figures/SDE-Chart.pdf used on input line 281.
-(pdftex.def)             Requested size: 448.13095pt x 316.95663pt.
- [14] [15 <D:/Master Thesis/Thesis/Report/Figures/SDE-Chart.pdf>]
-LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 317
+Package pdftex.def Info: ./Figures/SDE-Chart.pdf used on input line 297.
+(pdftex.def)             Requested size: 507.33932pt x 358.8233pt.
+
+Overfull \hbox (47.59308pt too wide) in paragraph at lines 296--298
+ []|  [] 
+ []
+
+[17] [18 <D:/Master Thesis/Thesis/Report/Figures/SDE-Chart.pdf>]
+LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 333
 .
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ot1lmtt.fd"
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ot1lmtt.fd"
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 306--318
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 322--334
 [] 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 322--344
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 338--360
 [] 
  []
 
-[16] <./Figures/Gitflow-Workflow.pdf, id=434, 845.55902pt x 598.03424pt>
+[19] <./Figures/Gitflow-Workflow.pdf, id=536, 845.55902pt x 598.03424pt>
 File: ./Figures/Gitflow-Workflow.pdf Graphic file (type pdf)
 
 <use ./Figures/Gitflow-Workflow.pdf>
-Package pdftex.def Info: ./Figures/Gitflow-Workflow.pdf used on input line 353.
+Package pdftex.def Info: ./Figures/Gitflow-Workflow.pdf used on input line 370.
 
 (pdftex.def)             Requested size: 448.13095pt x 241.55719pt.
- [17] [18 <D:/Master Thesis/Thesis/Report/Figures/Gitflow-Workflow.pdf>]
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 370--412
+ [20]
+Underfull \hbox (badness 10000) in paragraph at lines 379--382
+
+ []
+
+[21 <D:/Master Thesis/Thesis/Report/Figures/Gitflow-Workflow.pdf>]
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 387--429
 [] 
  []
 
@@ -880,23 +919,27 @@ File: lstlang2.sty 2015/06/04 1.6 listings language file
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 )
 
-Package Listings Warning: Text dropped after begin of listing on input line 422
+Package Listings Warning: Text dropped after begin of listing on input line 439
 .
 
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 427.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 444.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 444.
+(Font)              <5> on input line 461.
 
-Underfull \hbox (badness 1931) in paragraph at lines 449--449
+Package Listings Warning: Text dropped after begin of listing on input line 472
+.
+
+
+Underfull \hbox (badness 1931) in paragraph at lines 499--499
 [][][]|\OT1/lmr/m/n/12 Make-file for 'aoc-sApFw' Con-
  []
 
+[22] [23] [24]
+Underfull \hbox (badness 10000) in paragraph at lines 507--509
 
-Package Listings Warning: Text dropped after begin of listing on input line 455
-.
+ []
 
-[19] [20] [21]
 (C:\Users\Ram\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
@@ -904,63 +947,64 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 )
 
-Package Listings Warning: Text dropped after begin of listing on input line 503
+Package Listings Warning: Text dropped after begin of listing on input line 521
 .
 
 LaTeX Font Info:    Font shape `OML/lmr/m/n' in size <8> not available
-(Font)              Font shape `OML/lmm/m/it' tried instead on input line 504.
-[22] [23] [24] ("D:\Master Thesis\Thesis\Report\seminar-template.bbl" [25]
-Underfull \hbox (badness 10000) in paragraph at lines 131--133
+(Font)              Font shape `OML/lmm/m/it' tried instead on input line 522.
+[25] [26] [27] ("D:\Master Thesis\Thesis\Report\seminar-template.bbl" [28]
+Underfull \hbox (badness 10000) in paragraph at lines 138--140
 []\OT1/lmr/m/n/12 ``Gitflow work-flow.'' URL: [][]$\OT1/lmtt/m/n/12 https : / /
  www . atlassian . com / git / tutorials /$
  []
 
 
-Underfull \hbox (badness 1325) in paragraph at lines 141--143
+Underfull \hbox (badness 1325) in paragraph at lines 148--150
 []\OT1/lmr/m/n/12 ``Atlassian doc-u-men-ta-tion - what is an is-sue.'' URL: [][
 ]$\OT1/lmtt/m/n/12 https : / / confluence .$
  []
 
-[26])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 571.
- [27]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 571.
+[29])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 591.
+ [30]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 591.
  ("D:\Master Thesis\Thesis\Report\seminar-template.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 571.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 571.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 591.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 591.
 Package rerunfilecheck Info: File `seminar-template.out' has not changed.
 (rerunfilecheck)             Checksum: 8479C100EB818CEA79155E8278198680;2282.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 571.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 591.
  ) 
 Here is how much of TeX's memory you used:
- 11621 strings out of 493921
- 180003 string characters out of 3144882
- 446596 words of memory out of 3000000
- 14502 multiletter control sequences out of 15000+200000
- 56400 words of font info for 50 fonts, out of 3000000 for 9000
+ 11645 strings out of 493921
+ 180437 string characters out of 3144882
+ 448124 words of memory out of 3000000
+ 14516 multiletter control sequences out of 15000+200000
+ 59343 words of font info for 51 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 43i,12n,50p,2315b,1583s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Progr
-am Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files (x
-86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files (x86)/MiKTeX 2.9/
+ 43i,12n,50p,2315b,1570s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program F
+iles (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files (x86)/
+MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files (x86)/MiKTeX 2.9/
 fonts/enc/dvips/lm/lm-rmtt.enc}{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvi
 ps/fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmbx1
-2.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmbxi10.pfb><C:/
-Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Program Files (x86)/MiK
-TeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
-s/type1/public/lm/lmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
-ic/lm/lmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr8.p
-fb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Prog
-ram Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsso12.pfb><C:/Program Files 
-(x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files (x86)/MiKTe
-X 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
-type1/public/lm/lmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/c
-ourier/ucrr8a.pfb>
-Output written on seminar-template.pdf (27 pages, 763456 bytes).
+2.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmbx8.pfb><C:/Pr
+ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmbxi10.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files (x86)/MiK
+TeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
+s/type1/public/lm/lmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
+ic/lm/lmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr17.
+pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Progr
+am Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files (x
+86)/MiKTeX 2.9/fonts/type1/public/lm/lmsso12.pfb><C:/Program Files (x86)/MiKTeX
+ 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
+type1/public/lm/lmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public
+/lm/lmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8
+a.pfb>
+Output written on seminar-template.pdf (30 pages, 988496 bytes).
 PDF statistics:
- 759 PDF objects out of 1000 (max. 8388607)
- 224 named destinations out of 1000 (max. 500000)
- 278 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 867 PDF objects out of 1000 (max. 8388607)
+ 231 named destinations out of 1000 (max. 500000)
+ 300 words of extra memory for PDF output out of 10000 (max. 10000000)
 
