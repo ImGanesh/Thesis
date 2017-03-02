@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.5.22)  1 MAR 2017 16:46
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.5.22)  2 MAR 2017 07:57
 entering extended mode
 **seminar-template.tex
 ("D:\Master Thesis\Thesis\Report\seminar-template.tex"
@@ -873,7 +873,12 @@ Overfull \hbox (47.59308pt too wide) in paragraph at lines 296--298
  []|  [] 
  []
 
-[17] [18 <D:/Master Thesis/Thesis/Report/Figures/SDE-Chart.pdf>]
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 305--306
+
+ []
+
+[18 <D:/Master Thesis/Thesis/Report/Figures/SDE-Chart.pdf>]
 LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 333
 .
 
@@ -892,14 +897,14 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 338--360
 [] 
  []
 
-[19] <./Figures/Gitflow-Workflow.pdf, id=536, 845.55902pt x 598.03424pt>
+[19] [20] <./Figures/Gitflow-Workflow.pdf, id=542, 845.55902pt x 598.03424pt>
 File: ./Figures/Gitflow-Workflow.pdf Graphic file (type pdf)
 
 <use ./Figures/Gitflow-Workflow.pdf>
 Package pdftex.def Info: ./Figures/Gitflow-Workflow.pdf used on input line 370.
 
 (pdftex.def)             Requested size: 448.13095pt x 241.55719pt.
- [20]
+
 Underfull \hbox (badness 10000) in paragraph at lines 379--382
 
  []
@@ -978,7 +983,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 591.
 Here is how much of TeX's memory you used:
  11645 strings out of 493921
  180437 string characters out of 3144882
- 448124 words of memory out of 3000000
+ 448195 words of memory out of 3000000
  14516 multiletter control sequences out of 15000+200000
  59343 words of font info for 51 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -1002,7 +1007,7 @@ am Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files (x
 type1/public/lm/lmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public
 /lm/lmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8
 a.pfb>
-Output written on seminar-template.pdf (30 pages, 988496 bytes).
+Output written on seminar-template.pdf (30 pages, 988494 bytes).
 PDF statistics:
  867 PDF objects out of 1000 (max. 8388607)
  231 named destinations out of 1000 (max. 500000)
