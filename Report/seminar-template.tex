@@ -14,7 +14,7 @@
 \usepackage{listings}
 \usepackage{caption}
 \usepackage{pdfpages}
-
+\usepackage{pgfplots}
 %to get clickable links from table of contents
 \usepackage{hyperref}
 \hypersetup{
@@ -26,6 +26,14 @@
 }
 
 \newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    %\addtocounter{page}{-1}%
+    \newpage}
 
 %\pagestyle{myheadings}
 %\markboth{ITI Seminar: Your Name}{ITI Seminar: Your Name}
@@ -67,6 +75,7 @@
 % \date{Seminar talk given on 25.05.2012}
 
 \begin{document}
+\afterpage{\blankpage}
 \maketitle
 %the following is for dedication setting
 \iffalse
@@ -79,10 +88,10 @@
 \end{center}
 \clearpage
 \fi
+\afterpage{\blankpage}
 \textbf{Abstract}
 \par There are several benefits when Continuous Integration (CI) is adopted for a software
-development project. This provides for a mechanism to prevent human errors during
-the build and test of the developed software, as well as help release the product on-time.
+development project. This provides for a mechanism to reduce the burden on developers during the build and test of the developed software, as well as help release the product on-time.
 Other benefits include capturing errors quite early in the development cycle, easier integration
 at defined intervals over the course of software development, and faster, comprehensive
 feedback to developers. However, in an embedded domain, adopting CI is a challenging activity. If the project size and complexity is high, there will be a large number of activities which need to be covered in the CI workflow. Not all tools used in software development provide seamless interfaces to the CI tool. There is a need to design the interface framework which can quickly grow to be complex and time consuming. 
@@ -99,8 +108,10 @@ for mechanisms to easily integrate with CI tools. This study is carried out as a
 with a Jenkins CI server and Gradle as the primary build tool. Parameters such as performance, maintenance complexity of build logic, and features such as integration to a CI tool, reproducible builds will be investigated. 
 
 \pagebreak
+\afterpage{\blankpage}
 \tableofcontents 
-\pagebreak
+\newpage
+\afterpage{\blankpage}
 \listoffigures
 \newpage
 
@@ -127,7 +138,7 @@ with a Jenkins CI server and Gradle as the primary build tool. Parameters such a
 \caption{Expressiveness vs Conciseness - How the different build tools fit into this comparison graph?}
 \label{fig:expr-vs-conc}
 \end{figure}
-\par A classification of build tools can be done on the basis of how they are used by the build author. One type is the \emph{imperative} build system. Examples include GNU Make or Apache Ant. This means that it is the responsibility of the build author to define what the build should do and also how the automation tool should do it. In case of a \emph{declarative} build system, the build author is responsible for stating what the build logic should do. The build automation tool attempts to figure out how the requirements are to be met. This convention over configuration approach provided by declarative build systems enable to increase the conciseness of the build logic. 
+\par A classification of build tools can be done on the basis of how they are used by the build author. One type is the \emph{imperative} build system. Examples include GNU Make or Apache Ant. This means that it is the responsibility of the build author to define what the build should do and also how the automation tool should do it. In case of a \emph{declarative} build system, the build author is responsible for stating what the build logic should do. The build automation tool attempts to figure out how the requirements are to be met. This \emph{build by convention} approach provided by declarative build systems enable to increase the conciseness of the build logic. 
 \par Build automation is generally considered as a CI best practice\cite{fowler2006continuous}. To interface the build tool with a CI tool, a framework needs to designed and implemented. This is called \emph{glue logic}. The implementation of this glue logic is done usually using shell scripting. However, if the build logic is inherently complex, this interface might be difficult to establish and maintain. 
 \par This study attempts to provide a method to quantize build systems. This research is implemented as an Action Research (AR). A detailed analysis of the existing build system is done. A discussion with the developers is performed to identify build activities which they commonly use and the challenges that they face with these activities. This initial phase gives rise to a set of observations, opinions and ideas. They are then taken into consideration to form a hypothesis of a new CI framework. A predominantly bottom-up approach towards Continuous Integration is done. A CI workflow is created based on the development Gitflow workflow. And the best practices of CI are then applied to this framework. A declarative build tool (Gradle) is used to express the build logic. At the time of design, the developer requirement as well as build design best practices are taken into consideration. A glue logic free system is one of the objectives of this study. This objective is achieved by extending Gradle and leveraging inherent CI tool (Jenkins) functionalities. Better performance is targeted. A reduction in the build-run time can translate to faster feedback and hence on-time release of software. Good software engineering practices are adopted, optimizations are studied, and continuous iterative development is carried out to achieve faster and comprehensive builds. The study also provides a definition for maintenance complexity of build logic when implemented in Gradle. The embedded nature of the project and inherent design methodology of existing build logic are two main factors influencing this definition. Opinions and experiences of the users of the system are taken into account. Additionally, literature covering similar studies are investigated and the knowledge has been incorporated in this study. Thus, the results for measuring complexity that are obtained are a mixture of quantitative and qualitative metrics. Taking the outcomes of these activities, the proposed hypothesis was verified. 
 \\
@@ -260,7 +271,7 @@ Quantizing build automation tools is inherently a difficult proposition. This st
 Developer 2(D2): The existing system takes about ten minutes to create the executable. If this time period can be reduced, it is a good thing \ldots} \\
 
 Based on the text above, a label called Performance can be introduced. Similarly, different themes can be drawn out from the text and a hypothesis can be generated. 
-\par The next method under Data Analysis is \textit{Confirmation of Hypothesis}. Here, a practice called as Triangulation\cite{seaman2009using} is employed. A particular parameter under study is analyzed from various angles. For example, lets consider complexity of build logic as the parameter under study. Qualitative data obtained from interaction with the developers might of the form as: 
+\par The next method under Data Analysis is \textit{Confirmation of Hypothesis}. Here, a practice called as Triangulation\cite{seaman2009using} is employed. A particular parameter under study is analyzed from various angles. For example, lets consider complexity of build logic as the parameter under study. Qualitative data obtained from interaction with the developers contained text such as: 
 
 \textit{Developer 1 (D1): There are many environment variables in the build logic and I am not sure where they are set \ldots \\
 Developer 2 (D2): There are a large number of Makefiles that are included when I run \courierword{make} on my sources. I am not really sure what these Makefiles do \ldots } \\
@@ -560,16 +571,333 @@ include $(CPL_REP_MAKE)/Make.rules
 \pagebreak
 \section{Gradle for AS400 CSW}
  This section aims to define the Gradle model which is developed for the software development project under study. 
+\par The build logic implementation in this study uses the Gradle Native build methodology. As mentioned earlier, Gradle follows a build by convention approach. This means that Gradle comes with a pre-conceived notion of commonly used build functions. For example, if there is a requirement to create an executable from a set of C sources, Gradle fixes default directories to search for these sources and associated headers, and defines a control flow such as a compilation task followed by a link task, check, and install tasks. It also decides the location of placing the generated objects and executables. It is also possible to alter these defaults if required. 
+\par Gradle achieves this using a Rule based model configuration. This enables build authors to describe \textit{what} they would like to do rather than \textit{how} they would like to get it done.
 \subsection{Terminology} 
+ This section describes some common Gradle terminologies that are used and how they map to the project specific terminologies described in Section 3.
+
+\begin{itemize}
+\item{\textbf{Component}}: Gradle component represents a logical piece of software in build logic. It is an abstraction for a unit of code which can depend on other code units. For example, it can represent a library or an executable being created. Components are characterized by a specific name. In this study, the component names may map to the name of the Collection/Constituent being built. 
+\item{\textbf{Source Set}}: This represents the set of source files which are grouped according to the language in which they are written. Gradle components generally use these source sets in the build. In this study, three types of source sets are used - C Source Set, Java Source Set and Assembler Source Set. 
+\item{\textbf{Tool Chain}}: This represents the tool chain that is to be used for building the software. In embedded software development, there is cross development which is achieved by using different tool chains. In this study, there are two different tool chains which are used to produce different variants of the image - \emph{sparc-rtems-gcc} tools for cross-compilation on a target processor and the native PC \emph{gcc/g++} tool chain.  
+\item{\textbf{Platform}}: Platform has two attributes - architecture and operating system on which the build is to be done. Each platform is also associated with a corresponding tool chain. 
+\item{\textbf{Binaries}}: Binaries are the output of build logic. Gradle components representing appropriate source sets are compiled and linked accordingly to create binaries. In this study, three different types of binaries are generated by Gradle - Executables, Libraries and Partially Linked Objects (PLO's). Linker and compiler arguments can be provided as attributes when defining binaries in the Gradle software model. 
+\end{itemize}
+
+\par The terminologies which are explained can be illustrated with the help of an example in figure~\ref{fig:terminology-explanation}. Consider the \emph{build.gradle} at the 'asw' Collection level. There are two components being described. Each of these is characterized by a C source set. The build file also defines the target platform on which the builds are to be executed. In addition, as C sources are involved, there is a need to mention the possible locations of header files which are referenced by the sources. This is done by using what are called as Gradle's Prebuilt Libraries. Since the header files are spread across multiple directories, it is possible to create groups with each group containing a set of relative path to headers. These groups are then added appropriately to the build files and a linkage is achieved for compile time operations. 
+
+\begin{figure}[!ht]
+\lstset{language=Java,breakatwhitespace=false,
+        commentstyle=\color{red}, keywordstyle=\color{blue},
+        breaklines=true, basicstyle=\scriptsize\fontfamily{pcr}\selectfont, numbers=left,
+        morekeywords={project,ext,model,components,sources,source,linkage,library}
+}
+\begin{lstlisting}[frame=single]
+// build.gradle for asw
+
+apply plugin: 'c'
+project.ext.SRC=["Asw.c"]
+model {
+	components {
+		libasw (NativeExecutableSpec){  //define the type of component to be built
+			targetPlatform "SCOC3" //choose the tool chains defining the SCOC3 platform
+			sources {    //define the source set used
+				c {
+					source {
+						srcDirs "."
+						include SRC
+						}
+		//define the location of header files required for compilation of sources
+					lib library: 'as400prodHeaders', linkage: 'api' 
+				}
+			}
+		}
+		asw (NativeLibrarySpec){ 
+			targetPlatform "SCOC3"
+			sources {
+				c {
+					source {
+						srcDirs "."
+						include SRC
+						}
+					lib library: 'as400prodHeaders', linkage: 'api'
+				}				
+			}
+		}	
+	}
+}
+\end{lstlisting}
+\caption{\courierword{build.gradle} at asw level}
+\label{fig:terminology-explanation}
+\end{figure}
+
+\par It should be noted here that in build files at collection level, not every information required for the build is defined explicitly. As most of the collections have a common behaviour, this is factored out and included in a separate build file at a higher level in the hierarchy. The next subsection describes about this adopted methodology in detail. 
+
 \subsection{Build System Design Aspects}
+The figure~\ref{fig:terminology-explanation} was at collections level. As mentioned, the build logic within a collection level is not comprehensive. These build files usually inherit from a common build file at the root level of the project. In Gradle, this is called as a Multi-Project Build\cite{dockter2015gradle}.  \\
+\par \textbf{Multi-Project Builds in Gradle} 
+\par Section 3 provided a detailed overview of the organization of the source code hierarchy in the project. The software executable that is generated in the build process is build up from Constituents and Collections. There is a build file in each of the Collection, Constituent and Sub-Constituent levels. In Gradle's terminologies, these build files are called \emph{sub-projects}. The sub-projects which share common behaviour are grouped in a separate build file. This file is called a \emph{root project}. There exists also a \emph{settings.gradle} file at the same level as the root project's build file. This file defines the sub-projects which should inherit the root project's functionality.  
+\par A good build system should have a global, fine-grained view of dependencies across all Collections and Constituents\cite{miller1998recursive}. The Multi-Project build methodology that is adopted provides this feature. It is expressed in tree form in the figure~\ref{fig:prod-repo-structure-with-gradle}. There is a root project build file (in red) and sub-project build files (in blue) within each Collection and Constituent. 
+\begin{figure}[!ht]
+\noindent\fbox{%
+\parbox{\textwidth}{%
+\dirtree{%
+.1 as400prod.
+.2 \color{red}build.gradle      ----------- Root Project.
+.2 delivery.
+.2 fsw.
+.3 aocs.
+.4 \color{blue}build.gradle      -------- Sub-project.
+.4 aocs.     
+.5 \color{blue}build.gradle.     
+.4 aocsEquipments.
+.5 cbh.
+.6 \color{blue}build.gradle.
+.5 str.
+.6 \color{blue}build.gradle.
+.5 \color{blue}build.gradle.
+.4 aocsMcl.
+.5 \color{blue}build.gradle.
+.3 asw.
+.4 \color{blue}build.gradle.
+.3 boot.
+.3 dms.
+.4 dms.
+.5 \color{blue}build.gradle.
+.4 \color{blue}build.gradle.
+.2 \color{blue}settings.gradle.
+.2 usvf.
+.2 uml.
+}
+}%
+}
+\caption{An excerpt of the AS400 Production Repository Structure containing \emph{build.gradle} files}
+\label{fig:prod-repo-structure-with-gradle}
+\end{figure}
+
+
+\par The \courierword{build.gradle} depicted in figure~\ref{fig:terminology-explanation} is a gradle sub-project. Some of the features used are expressed in the root project's build file. Excerpts of the build logic in the root project are shown in figures~\ref{fig:root-project-build-logic-part-1} and~\ref{fig:root-project-build-logic-part-2}. 
+\begin{figure}[!ht]
+\lstset{language=Java,breakatwhitespace=false,
+        commentstyle=\color{red}, keywordstyle=\color{blue},
+        breaklines=true, basicstyle=\scriptsize\fontfamily{pcr}\selectfont, numbers=left,
+        morekeywords={project,ext,model,components,sources,source,linkage,library}
+}
+\begin{lstlisting}[frame=single]
+// build.gradle for as400prod - root project
+//the following configuration is common for all sub-projects where there is a need to create either a partially linked object file or a Static library.
+//filter based on name of project.
+configure (subprojects.findAll {!it.name.contains('SVDD')}) {
+//apply custom plugin because PLO generation not inherently defined by Gradle
+apply plugin: PartiallyLinkedObjectRules
+
+apply plugin: 'c'
+
+	model {
+
+//define the tool chain used for cross compilation. Take care when providing the arguments if order of arguments matter	
+		toolChains {
+			gcc(Gcc) {
+				path "/opt/rtems/4.6_20130612/bin"
+				target("SCOC3"){
+					assembler.executable = "sparc-rtems-gcc"
+					cCompiler.executable = "sparc-rtems-gcc"
+					linker.executable = "sparc-rtems-ld"
+					staticLibArchiver.executable = "sparc-rtems-ar"				
+					assembler.withArguments { args ->
+						Collections.replaceAll(args,"assembler","assembler-with-cpp")
+					}				
+					cCompiler.withArguments { args ->
+					}
+					linker.withArguments { args ->
+					}
+					staticLibArchiver.withArguments { 
+					remove '-rcs'
+					add 0, 'crs'
+					}
+				}
+\end{lstlisting}
+\caption{\courierword{build.gradle} at as400prod level}
+\label{fig:root-project-build-logic-part-1}
+\end{figure}
+\begin{figure}[!ht]
+\lstset{language=Java,breakatwhitespace=false,
+        commentstyle=\color{red}, keywordstyle=\color{blue},
+        breaklines=true, basicstyle=\scriptsize\fontfamily{pcr}\selectfont, numbers=left,
+        morekeywords={project,ext,model,components,sources,source,linkage,library}
+}
+\begin{lstlisting}[frame=single,firstnumber=33]
+				path "/home/a27495454/test_build/scripts/bin"
+				target("PC"){
+					cCompiler.executable = "gcc"
+					cppCompiler.executable = "gcc"
+					linker.executable = "g++"
+					cCompiler.withArguments { args ->
+					}
+					cppCompiler.withArguments { args ->
+					}
+					linker.withArguments { args ->
+						List origArgs = new ArrayList(args)
+						def map_name = new File(System.getProperty("user.dir")).name
+						List preArgs = [ "-Wl,-Map,${map_name}.exe.map,--cref","-Wall" ]
+						args.clear()
+						args.addAll(preArgs)
+						args.addAll(origArgs)						
+					}
+				}				
+			}
+		}
+//define the applicable platforms		
+		platforms {
+			SCOC3{
+				architecture "sparc"
+			}
+			PC{
+			//default OS and architecture detected by Gradle 
+			}
+		}
+\end{lstlisting}
+\caption{\courierword{build.gradle} at as400prod level(contd.)}
+\label{fig:root-project-build-logic-part-2}
+\end{figure}
+\par This configuration is for sub-projects which need to produce a partially linked object (PLO). A custom plugin called \emph{PartiallyLinkedObjectRules} plugin is created. By default, Gradle provides support to build executables and static libraries by default. Since, the PLO generation need to be distinguished, a separate custom plugin is created. Two distinct platforms are defined and the tool chains are distinguished based on these platforms. In the sub-projects, the platform on which the build is carried out is mentioned.
+\par Every new sub-project becomes a part of the Gradle build when the name of the project is included in the \emph{settings.gradle} file under the root level directory. In this study, the root project can be divided into three distinct sections. 
+\begin{enumerate}
+\item Configurations for a set of sub-projects at Collection/Constituent/Sub-Constituent level which creates PLOs or Static Libraries. \item Configurations for handling unit tests. 
+\item And the third part which contains configuration for building the complete CSW and related custom tasks. 
+\end{enumerate}
+
+\par The two sets of sub-projects are filtered based on the names of the projects. They contain behaviour common for the sub-projects. Generally, the custom plugins which are created are applied specifically for these sub-projects. The design also incorporates custom Gradle tasks for performing various functions. There is a custom task for creating a Global Artifact version marker. The marker is of the form \$PROJECT-\$VERSION-GIT\_HASH. The \$PROJECT and \$VERSION variables are set in a file called \emph{gradle.properties} also present at the same level as the root project. The developer version controls this before the build, usually before a release image. The GIT\_HASH variable is set by running Git commands to get the HEAD commit id as well as dirty information if present. There are custom check tasks which perform checks on the generated executable. Alias tasks have been set for creating the different variants of the image. A separate CI task is created for interface with the CI server. It contains all the tasks which need to be executed on the remote machine when initiated. The ordering of the tasks is also carefully defined using Gradle constructs such as \emph{mustRunAfter} and \emph{shouldRunAfter}.
+\par Prior to the start of the design with Gradle, interviews were done with the developers of the system. The interview was primarily semi-structured. Features which were used often during the builds were recorded. The challenges faced by developers during build time was also recorded. The notes prepared contained text such as:
+
+\textit{Developer 1(D1): When I want to run Make on my developed source code, I need to use a large number of low level command line arguments\ldots}\\
+\textit{Developer 2(D2): I feel there is a lot of boiler plate code in the build logic. Often, I am forced to touch the same environmental variable in multiple build files. }
+
 \subsection{Analysis of Build Logic}
-
+\par This section describes how Gradle handles the build and unit test process. As mentioned earlier, Gradle performs the build by executing tasks. They form a Directed Acyclic Graph (DAG)\cite{thulasiraman2011graphs}. Every Gradle build has three distinct build phases - Initialization, Configuration and Execution. 
+\par In the Initialization phase, Gradle determines the different sub-projects and the root project which would be participating in the build. During the Configuration phase, Gradle configures the build logic in all the projects. In the Execution phase, Gradle executes the actions described in selected tasks which are required for the invoked build. The \emph{doFirst} and \emph{doLast} closures in a task are always executed at this stage in the build life-cycle. 
+\par In this study, it is possible to build the complete software as well as small portions of the source code. Both these scenarios are explained with the help of examples. Consider the case where the Collection 'asw' needs to be built. From figure~\ref{fig:terminology-explanation}, it can be deduced that two different types of binaries will be handled in the build file - PLO and Static Library. The platform for which the compilation needs to be done is SCOC3. The tool chains which would be doing the compilation and linking are obtained by processing the root project. The different sources that need to be compiled are defined using the variable reference \$SRC. The required header files at compile time are gathered by passing the entries under the set 'as400prodHeaders' to the compiler. For the PLO generation, Gradle by default describes the tasks, compile, link, check and clean. For Static Library generation, Gradle defines the assemble task. The default locations into which the PLO and \emph{.a} files would be written to is under the \$buildDir. For PLOs, the custom plugin then ensures that the PLO is copied to an appropriate location within a folder at a level above the Collection. This folder contains two sub-folders which stores PLOs generated for the two image variants SYSDB and SWDB. For Collections which contain Constituents and Sub-Constituents, the process is more elaborate. The core build logic inside a Collection which contain Constituents is shown in figure~\ref{fig:collection-with-constituent}. 
+\begin{figure}[!ht]
+\lstset{language=Java,breakatwhitespace=false,xleftmargin=3.4pt,xrightmargin=3.4pt,
+        commentstyle=\color{red},
+        keywordstyle=\color{blue},
+        breaklines=true, basicstyle=\scriptsize,
+        morekeywords={dependsOn, tasks, LinkExecutable}
+}
+\begin{lstlisting}[frame=single][t]
+tasks.withType(LinkExecutable) {
+if (name == "linkLibaocsExecutable") {
+	dependsOn << ":fsw/aocs/aocs:libaocsExecutable"
+	dependsOn << ":fsw/aocs/aocsEquipments:libaocsEquipmentsExecutable"
+	dependsOn << ":fsw/aocs/aocsApFw:libaocsApFwExecutable"
+	dependsOn << ":fsw/aocs/aocsMcl:libaocsMclExecutable"				
+	dependsOn << ":fsw/aocs/aocsMclIf:libaocsMclIfExecutable"
+	source = fileTree(dir: 'objs_exe/sysdb').files				
+}
+else if (name == "linkLibaocs_swdbExecutable") {
+	dependsOn << ":fsw/aocs/aocs:libaocs_swdbExecutable"
+	dependsOn << ":fsw/aocs/aocsEquipments:libaocsEquipments_swdbExecutable"
+	dependsOn << ":fsw/aocs/aocsApFw:libaocsApFw_swdbExecutable"
+	dependsOn << ":fsw/aocs/aocsMcl:libaocsMcl_swdbExecutable"				
+	dependsOn << ":fsw/aocs/aocsMclIf:libaocsMclIf_swdbExecutable"
+	source = fileTree(dir: 'objs_exe/swdb').files
+}
+}
+\end{lstlisting}
+\caption{Excerpt of \courierword{build.gradle} of a Collection containing Constituents}
+\label{fig:collection-with-constituent}
+\end{figure}
+\par The default task which does the link in Gradle is called the \emph{LinkExecutable} task. This default is for linking objects for creating an executable or a Shared Library. For a PLO, there is a need to hook into this task. To express dependencies before the partial linking stage, \emph{dependsOn} construct is used. Conditional statements are used to distinguish the SYSDB image and the SWDB image. An attribute called \emph{source} is provided which defines the object files which need to be provided as an input to the link stage. As mentioned, each Constituent writes its PLO to a folder at a higher level. This folder will be at the same level as the Collection. Hence the \emph{source} attribute references all files in this folder through the relative path. Similar logic is replicated across all Collections and Constituents in the project tree. 
+\par The execution of unit tests are slightly different from building the executable. The existing system defined a set of unit tests for selected Constituents and Sub-Constituents. Each of these unit tests is transformed into an executable and the test is run in a simulator. For each Constituent/Sub-Constituent, the cumulative results of multiple tests convey the status. Shell scripts are used to execute a list of tests in batch mode. A fundamentally different approach towards unit testing was then proposed. A unit testing framework using CppUTest is created. Gradle build system is designed to support this unit testing framework. In this methodology, it is intended to have one executable per Constituent/Sub-Constituent and run a suite of tests against this executable in the simulator. 
+\par The CppUTest framework uses a unit test harness written in C++. A harness is a piece of software which describes how the production code is expected to behave during unit testing. The source code for CppUTest is version controlled in the production repository. The binaries for the respective operating systems are also version controlled. A \courierword{build.gradle} file of a Constituent consists of two types of sources - production C sources as well as test harness and test related C++ sources. An executable is generated based on the target platform and the defined tool chain. By default, executables are built for both SCOC3 and PC platforms. A custom task is provided to run the Unit Test. This involves invoking Gradle to perform the build followed by a shell script to launch the simulator. The custom tasks are present in the root project and is common for all unit tests across the project. 
+\pagebreak
 \section{Continuous Integration in AS400 CSW}
+\par Best practices that help create an effective CI workflow was discussed in Section 3. During the design of a CI workflow for this project, these best practices were taken into consideration. The benefits of having a CI set-up for a software development project was also discussed. This section will provide a detailed description of the Jenkins CI workflow designed for the AS400 CSW development project. 
 \subsection{Terminology}
+This section describes terminologies used in the CI workflow design. Jenkins is the open source automation server in use. The terms described in this section are purely within scope of the project under study. 
+\begin{itemize}
+\item \textbf{Job}: A Jenkins job is user-configured definition of work which Jenkins should execute. Examples are checking out a Git repository or build a piece of software.
+\item \textbf{Phase}: A set of Jenkins jobs which perform similar functions are grouped to obtain a Phase. For example, jobs checking out selected repositories onto a workspace in the server can be grouped and called as Checkout phase. 
+\item \textbf{Job Chain}: A job which groups job phases to carry out a Jenkins build. It defines the control flow through the different phases. A mapping of activities from the production domain to the CI domain can be achieved by defining them as part of a job chain.  
+\item \textbf{Node}: A machine on which Jenkins jobs execute. In this study, there are three nodes. One master node where the Jenkins instance runs. The master provides the user interface to communicate with Jenkins. It also provides configuration for the slaves as well as security settings. Two slave nodes on which the build, test and static code analysis runs. The generated artifacts are copied back to the master node where they are archived. 
+\item \textbf{Executor}: Slots in which Jenkins jobs are executed. A node can contain zero or more executors. In this study, each of the slave nodes are equipped with four executors. 
+\item \textbf{Check Window}: A condition which is checked at the end of a phase. It helps determine the control flow of a job chain. 
+\end{itemize}
+\par Figure~\ref{fig:jenkins-master-slave} shows an overview of the Jenkins set-up that is used in this project. Jenkins contains default algorithms to map the jobs to the executors. Project specific restrictions on this allocation are discussed in the next section. 
+\begin{figure}[!htp]
+\hspace{-1cm}
+	\includegraphics[scale=0.6, trim=0cm 6cm 5cm 5cm]{Jenkins-Master-Slave.pdf}
+\caption{Jenkins Master Slave set-up}
+\label{fig:jenkins-master-slave}
+\end{figure}
 \subsection{CI Workflow for AS400 CSW}
+\par This section explains the design of the CI workflow in Jenkins. The design is explained considering the fact that the Jenkins master and slave nodes were already set-up with the required plugins, configurations and security restrictions of the project. Further discussion of these parameters are beyond the scope of this thesis.
+\par The flow chart in figure~\ref{fig:stash-jenkins-workflow} provides an overview of how Jenkins integrates with the Atlassian tools used in software development. There is a possibility to set up  a web hook to Jenkins from Stash. When a branch being tracked by Jenkins is touched by any of the developers, a hook is sent to Jenkins CI server to initiate the build. After Jenkins finishes the build, the status of the jobs are notified back to Stash. Hence, the framework uses Stash as the central user interface to push commits, as well as view status of Jenkins jobs. A link to Jenkins GUI is also provided for each job for each commit in Stash. Using this link, it is possible for developers to navigate to Jenkins environment and view finer details of the build. The artifacts are stored automatically on the master node and is visible to all members of the project. 
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\textwidth]{jenkins-workflow.png}
+\caption{Overview of Stash - Jenkins connection}
+\label{fig:stash-jenkins-workflow}
+\end{figure}
+\par Jenkins jobs are configured in two ways. Either through the Jenkins GUI or using xml. The xml's describe the configuration of the jobs. There exists Jenkins Command Line Interface (CLI) scripts which are invoked to push these xml's into the server. They can then be viewed on the Jenkins consoles and modified if necessary. There are three different types of Jenkins jobs which can be set-up.
+\begin{enumerate}
+\item \textbf{Free-style job}: A flexible configuration which is used to perform a defined task. They have the limitation that they can run on one of the slave machines.
+\item \textbf{Matrix Job}: A job which is capable of executing in few or all of the defined build slaves concurrently. For example, it is necessary to clone the repositories on Jenkins workspaces in all the build slaves. This can be achieved by defining the job as a matrix job.
+\item \textbf{Multi-configuration Job}: A job which can be used to define a CI workflow by defining the phases and the jobs within these phases as well as the check windows. A classical example is the job chains which is discussed next. 
+\end{enumerate}
+\par The CI workflow is derived from the Gitflow workflow. The Gitflow workflow was discussed in detail in Section 3. There are seven Jenkins job chains which were defined for the project. They are:
+\begin{enumerate}
+\item Master Job Chain
+\par This job chain defines the control flow for the CI run when a commit is made into the \courierword{master} branch in the production repository.
+\item Develop Job Chain
+\par This job chain defines the control flow for the CI run when a commit is made into the \courierword{develop} or \courierword{release} branch of the production repository.
+\item Feature Job Chain
+\par This job chain defines the control flow for the CI run when a commit is made into the \courierword{feature} or \courierword{bugfix} branch of the production repository.
+\item On-Demand Job Chain
+\par This is a special job chain which is created to handle Ad-Hoc requests. It provides the developers with a flexibility to configure the branch which needs to be tracked by Jenkins. A manual trigger of this job chain is also possible from the Jenkins GUI.
+\item Check Master Job Chain
+\par This job chain handles the static code analysis when a commit is made into the \courierword{master} branch in the production repository.
+\item Check Develop Job Chain
+\par This job chain handles the static code analysis when a commit is made into the \courierword{develop} or \courierword{release} branch in the production repository.
+\item Check Feature Job Chain
+\par This job chain handles the static code analysis when a commit is made into the \courierword{feature} or \courierword{bugfix} branch in the production repository.
+\end{enumerate}
+\par This classification was necessary because the branches are handled differently in the production domain. \courierword{master} branch is expected to be stable at all points of time and meet high quality levels. The \courierword{develop} branch is also expected to clear high levels of quality standards and a build error of a commit on this branch is to handled quickly. The \courierword{feature} branches have relatively low quality standards set and hence their control flow is less strict as compared to \courierword{develop} or \courierword{master}. Each of these job chains have a dedicated workspace on all the slave nodes. The path of this workspace is propagated to all the jobs defined within the chain through a Jenkins global environmental variable called \$WORKSPACE. 
+\begin{figure}[!ht]
+\centering
+\hspace{-2cm}
+\includegraphics[scale=0.7, trim=2cm 6cm 2cm 2cm]{ci-workflow-phase.pdf}
+\caption{Overview of the structure of a Job chain containing phases and jobs}
+\label{fig:ci-phase-job-structure}
+\end{figure}
+\par The figure~\ref{fig:ci-phase-job-structure} shows an overview of the structure of a job chain containing phases and each phase containing a set of jobs. To summarize the overall structure, a job chain can consist of one or more phases. Each phase can contain one or more jobs. By default, the jobs within a phase execute concurrently on the same machine. Matrix jobs can execute concurrently on the defined slave nodes concurrently. Concurrent job execution within a phase can limited by using build throttling. Jenkins global environmental variables are passed from the job chain to child jobs. 
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\textwidth]{detailed-jenkins-workflow.png}
+\caption{A detailed Jenkins workflow for the project under study}
+\label{fig:detailed-jenkins-workflow}
+\end{figure}
+\par A detailed flow diagram of the Jenkins CI workflow is portrayed in figure~\ref{fig:detailed-jenkins-workflow}. It takes into consideration three job chains (Master, Develop and Feature). Generally, every job chain has a common set of phases. 
+\begin{itemize}
+\item \textbf{Checkout Phase}: This phase comprises of jobs for checking out the correct version of the different repositories that are needed for the build. The jobs are of matrix type as they need to be executed in all the build slaves. Jobs within this phase can execute concurrently to keep the builds fast. The check window at the end of this phase causes the CI run to quit because Jenkins was unable to correctly check out the required repositories. Often, this might happen if Jenkins does not have correct permissions, or if the slave nodes are running out of memory, or if the commit into git submodules are not checked in correctly. 
+\item \textbf{Make Extra Libraries Phase}: During the build, there is a need to reference some libraries which can be compiled before hand. The job in this phase carries out this activity. It is needed only if Make is the build system. In case of Gradle, this phase is redundant because the build logic treats this within the root project. 
+\item \textbf{Unit Testing Phase}: Unit Testing is carried on several Applications in the production repository. One job per Application is assigned. The obtained results are displayed as JUnit test reports. The tests are done only by compilation against the SCOC3 platform. A separate phase need to be created if the test results need to be obtained for cross compilation against native PC platform. If Gradle is the build tool, then the same phase can be used to obtain both sets of results. 
+\item \textbf{Build Phase}: This phase contains two jobs when Make is the build system in use. One job for creating the SYSDB variant of the image and another for SWDB variant. When interfaced with Gradle, one job will cover creation of both these variants. 
+\item \textbf{Workspace Clean-up}: The build directories are cleaned before any build is invoked. However, to capture and correct sporadic errors due to repeated cloning in the same workspace, a dedicated job is provided for this handling. 
+\end{itemize}
+\par In addition to these phases, jobs for other functionalities are provided. Additional Checks is a job which runs a set of shell scripts on the generated executables. The check merge conflicts job detects merge conflicts by attempting to merge the feature branch with develop. It does not perform the actual merge but a dry run is carried out. The check windows play an important role in determining how the job chains are handled. The red lines in the workflow lead to stopping the CI run because the quality standards have not been met and further continuation of the run might result in further similar errors. The green lines indicate that the workflow has no errors and should be in a position to continue till the end. The black lines signify that the CI run proceeds irrespective of errors encountered. This is primarily important for feature job chains where developers often expect quick and comprehensive feedback. 
+\par The existing set-up uses Logiscope Rulechecker tool for carrying out Static Code Analysis. By default, the code analysis runs on the entire source code in the repository and takes significantly longer time to execute than the build and tests. Hence, this activity is set-up as a separate job chain so that it does not act as a blocking parameter in terms of performance for other activities. 
 \subsection{Challenges faced during design}
-
+\par Developing a CI workflow for an embedded project is a challenging activity. This section describes some challenges that were faced at the time of design and some actions which were taken to mitigate them. 
+\par Setting up of a CI server and build slaves requires additional powerful hardware. The Jenkins master instance runs on the same server which handles the Atlassian tools. Hence, through Atlassian Crowd, the access to Jenkins can be managed. In this project, the slave nodes are linux flavoured virtual machines. The software development activities on the client SDE is predominantly in windows/cygwin. A shift to a linux operating system brings about a need to make the build and glue logic compatible. Significant effort was put into this activity. However, over a period of time, the automation mechanism in powerful hardware would prove to be more advantageous\cite{miller2008hundred}. 
+\par Jobs within a phase are able to run concurrently on the same machine. In the scope of this project, two builds when executing on the same machine might interfere with each other's process flaw leading to non-deterministic results. This is a common occurrence when builds are carried out using GNU Make. Hence, the concurrent job execution within a phase needs to be controlled. This is done by using a build throttling mechanism in the CI server. Jobs which are not allowed to run concurrently on the same machine are grouped under a single label. Jenkins master instance is instructed to read this dependency before allocation of jobs to the executors on the build slaves. In this manner, concurrent runs of non-compatible jobs on the same machine is avoided. In the realm of Validation testing, there is a project specific limitation that not more than one test is allowed to run in a machine at the same time. A label for validation tests is also generated and the issue is handled in a similar way. 
+\par In the space avionics domain, the software development is often large and complex. Hence, CI workflows designed for a project is expected to be both effective and efficient. An effective CI workflow is one which is adequate to perform the required operation. An efficient workflow is one where the task is carried out not just in an effective manner but with significant speed and less effort. In other words, the workflow should handle \emph{scalability}. As mentioned in the earlier section, there are large number of jobs in each job chain. Managing such large numbers would involve a considerable amount of effort and time. To mitigate this challenge, a python based tool called Jenkins Job Builder was investigated. Through the use of this tool, there is a possibility to define the configurations for the jobs once in the form of YAML. The tool is capable of parsing the YAML files and converting them to XML format. This can later be pushed to the Jenkins server. Jobs which share common behaviour, such as jobs belonging to an arbitrary phase, can be handled in an effective manner through the use of a well defined template system. The configuration information of the jobs are spread across multiple YAML files which are then processed by the tool to generate the XML. 
+\par Also, in the space avionics embedded software development, there is a large scale re-use of developed software products. So, a CI workflow designed at the time of development of one project should be easily adaptable for child projects which are forked from this one. The job chains for the child can be set-up using the Jenkins Job Builder tool as mentioned above. However, if the same Jenkins master instance have to be re-used, there is a need to manage the security configurations in case the parent and child projects have different access levels. Jenkins provides options for mitigating this problem by providing a project matrix authorization access to the Jenkins jobs. There are two levels of access control. A global control which manages the access of the entire Jenkins master instance as a whole. The second is a job level control which manages access of the selected job to only a subset of users. 
+\par Increasing the number of build slaves will translate to faster build and feedback times. However, a large number of tools are installed in the build slaves. Examples include the cross compiler, linker, the GNU Make package, python package for Job Builder tool. Any changes made to any of these tools need to be applied homogeneously to all the slave nodes. Considering the number of slave nodes and the magnitude of the change being made, the effort involved would be significant in terms of time and complexity.   
 \section{Evaluation and Results}
+\par One objective of this study was to determine the factors influencing the selection of a build system for the software development project. In this regard, using both qualitative and quantitative data, some factors were formulated and analyzed. This section presents the evaluation of the build system and the results that were concluded from the evaluations. 
+\par This study outlines three \emph{evaluation blocks} for analysis. The first is performance. This means the time required for the build or unit test process to execute. Second is the maintenance complexity of build logic. As the term complexity can have different contextual significances, later sections handle this in detail. Finally, the features offered by the build systems in the current state are discussed. These evaluation blocks are not completely mutually exclusive and quite often there are dependencies between these blocks. 
+\par The hardware that was used to run these tests were essentially the same. The build slaves on which Jenkins jobs run were chosen as the evaluation machines. For the tests, the SDE was maintained in a homogeneous state. The versions of all tools and software packages in the machines were identical. For performance tests, the GNU time utility is used when measuring builds running with GNU Make. In case of Gradle, the native time measurement functionality is used. The build commands were also executed on an average of four times, outliers if any were removed and the results were averaged. Each of the evaluation blocks are discussed in detail. 
 \subsection{Performance Comparison}
 \subsection{Complexity of Build Logic}
 \subsection{Feature Comparison}
@@ -578,6 +906,8 @@ include $(CPL_REP_MAKE)/Make.rules
 \section{Conclusion}
 \subsection{Summary}
 \subsection{Future Work}
+
+
 \pagebreak
 
 %\section{Summary}\label{sec:Summary}
@@ -587,6 +917,114 @@ include $(CPL_REP_MAKE)/Make.rules
 
 \bibliographystyle{ieeetr}
 \bibliography{seminar-template} % uses the seminar-template.bib file as input
+\pagebreak
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    ylabel=Time(s),
+    ymin=0,
+    xtick=\empty,
+    enlarge x limits={abs=\pgfplotbarwidth/2},
+    ybar=-\pgfplotbarwidth,% ybar must be -bar width
+    x=\pgfplotbarwidth,
+    bar width=30pt,
+    legend style={
+      cells={anchor=west},
+      legend pos=outer north east,
+    }
+]
+%
+\addplot coordinates{(1,14)};
+\addplot coordinates{(2,16)};
+%
+\addplot coordinates{(3.5,11)};
+\addplot coordinates{(4.5,13)};
+\addplot coordinates{(5.5,19)};
+%
+\addplot coordinates{(7,18)};
+\addplot coordinates{(8,25)};
+\legend{Make Clean,Gradle Clean,Make Specific Target,Gradle Specific Task,Gradle First Time Build, Incremental Make Build, Incremental Gradle Build}
+\end{axis}
+\end{tikzpicture}
+\end{figure}
 
+\begin{figure}[!ht]
+\begin{tikzpicture}
+\begin{axis}[
+    ylabel=Time(s),
+    ymin=0,
+    xtick=\empty,
+    enlarge x limits={abs=\pgfplotbarwidth/2},
+    ybar=-\pgfplotbarwidth,% ybar must be -bar width
+    x=\pgfplotbarwidth,
+    bar width=20pt,
+    legend style={
+      cells={anchor=west},
+      legend pos=outer north east,
+    }
+]
+%
+\addplot coordinates{(1,354)};
+\addplot coordinates{(3,361)};
+\addplot coordinates{(5,245)};
+\addplot coordinates{(7,204)};
+\legend{Make CSW Image,Gradle without Daemon,Gradle CSW Image(D),Gradle Parallel Build(D)}
+\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\begin{axis}[
+    ylabel=Time(s),
+    ymin=0,
+    xtick=\empty,
+    enlarge x limits={abs=\pgfplotbarwidth/2},
+    ybar=-\pgfplotbarwidth,% ybar must be -bar width
+    x=\pgfplotbarwidth,
+    bar width=20pt,
+    legend style={
+      cells={anchor=west},
+      legend pos=outer north east,
+    }
+]
+%
+\addplot coordinates{(1,5)};
+\addplot coordinates{(2,7)};
+\addplot coordinates{(3,4)};
+\legend{Make Specific Target, Gradle Specific Target (N), Gradle Specific Target (C)}
+\end{axis}
+\end{tikzpicture}
+
+\end{figure}
+
+\begin{tabular}{ |l|l| }
+	\hline
+	\multicolumn{2}{|c|}{GNU Make} \\
+	\hline
+	Number of Makefiles & 137 \\
+	\hline
+	Complexity Parameter &  \\
+	\hline
+	Lines of Code & 1754 \\
+	Variable References & 61 \\
+	Include other Makefiles & 6 \\
+	Conditionals (ifeq) & 35 \\
+	Conditionals (ifdef) & 14 \\
+	\hline
+\end{tabular}
+\begin{tabular}{ |l|l| }
+	\hline
+	\multicolumn{2}{|c|}{Gradle} \\
+	\hline
+	Number of \courierword{build.gradle} & 137 \\
+	\hline
+	Complexity Parameter &  \\
+	\hline
+	Lines of Code & 648 \\
+	Variable References & 10 \\
+	Conditionals (ifeq) & 35 \\
+	Conditionals (ifdef) & 14 \\
+	\hline
+\end{tabular}
 \end{document}
 

@@ -1,14 +1,23 @@
 \select@language {english}
-\contentsline {figure}{\numberline {1}{\ignorespaces Block Diagram to show Overview of CI concept\relax }}{6}{figure.caption.3}
-\contentsline {figure}{\numberline {2}{\ignorespaces Expressiveness vs Conciseness - How the different build tools fit into this comparison graph?\relax }}{7}{figure.caption.4}
-\contentsline {figure}{\numberline {3}{\ignorespaces An example of a \textsf {\itshape build.gradle}\relax }}{12}{figure.caption.8}
-\contentsline {figure}{\numberline {4}{\ignorespaces The output of \textsf {\itshape gradle tasks} command\relax }}{13}{figure.caption.9}
-\contentsline {figure}{\numberline {5}{\ignorespaces Action Research (AR) cycle consisting of three distinct stages\relax }}{13}{figure.caption.10}
-\contentsline {figure}{\numberline {6}{\ignorespaces SDE set-up for AS400 Central Software Development\relax }}{18}{figure.caption.11}
-\contentsline {figure}{\numberline {7}{\ignorespaces The AS400 Project top level view.\relax }}{20}{figure.caption.12}
-\contentsline {figure}{\numberline {8}{\ignorespaces An excerpt of the AS400 Production Repository Structure\relax }}{20}{figure.caption.13}
-\contentsline {figure}{\numberline {9}{\ignorespaces Representation of the Gitflow Workflow containing master, feature, develop and release branches\relax }}{21}{figure.caption.14}
-\contentsline {figure}{\numberline {10}{\ignorespaces Source Tree of one of the Collections containing Constituents and Sub-Constituents\relax }}{23}{figure.caption.15}
-\contentsline {figure}{\numberline {11}{\ignorespaces Makefile for 'aocs' Collection\relax }}{24}{figure.caption.16}
-\contentsline {figure}{\numberline {12}{\ignorespaces Makefile for 'aocsApFw' Constituent\relax }}{24}{figure.caption.16}
-\contentsline {figure}{\numberline {13}{\ignorespaces \textsf {\itshape build.xml} for AS400 Validation\relax }}{26}{figure.caption.17}
+\contentsline {figure}{\numberline {1}{\ignorespaces Block Diagram to show Overview of CI concept\relax }}{10}{figure.caption.3}
+\contentsline {figure}{\numberline {2}{\ignorespaces Expressiveness vs Conciseness - How the different build tools fit into this comparison graph?\relax }}{11}{figure.caption.4}
+\contentsline {figure}{\numberline {3}{\ignorespaces An example of a \textsf {\itshape build.gradle}\relax }}{16}{figure.caption.8}
+\contentsline {figure}{\numberline {4}{\ignorespaces The output of \textsf {\itshape gradle tasks} command\relax }}{17}{figure.caption.9}
+\contentsline {figure}{\numberline {5}{\ignorespaces Action Research (AR) cycle consisting of three distinct stages\relax }}{17}{figure.caption.10}
+\contentsline {figure}{\numberline {6}{\ignorespaces SDE set-up for AS400 Central Software Development\relax }}{22}{figure.caption.11}
+\contentsline {figure}{\numberline {7}{\ignorespaces The AS400 Project top level view.\relax }}{24}{figure.caption.12}
+\contentsline {figure}{\numberline {8}{\ignorespaces An excerpt of the AS400 Production Repository Structure\relax }}{24}{figure.caption.13}
+\contentsline {figure}{\numberline {9}{\ignorespaces Representation of the Gitflow Workflow containing master, feature, develop and release branches\relax }}{25}{figure.caption.14}
+\contentsline {figure}{\numberline {10}{\ignorespaces Source Tree of one of the Collections containing Constituents and Sub-Constituents\relax }}{27}{figure.caption.15}
+\contentsline {figure}{\numberline {11}{\ignorespaces Makefile for 'aocs' Collection\relax }}{28}{figure.caption.16}
+\contentsline {figure}{\numberline {12}{\ignorespaces Makefile for 'aocsApFw' Constituent\relax }}{28}{figure.caption.16}
+\contentsline {figure}{\numberline {13}{\ignorespaces \textsf {\itshape build.xml} for AS400 Validation\relax }}{30}{figure.caption.17}
+\contentsline {figure}{\numberline {14}{\ignorespaces \textsf {\itshape build.gradle} at asw level\relax }}{32}{figure.caption.18}
+\contentsline {figure}{\numberline {15}{\ignorespaces An excerpt of the AS400 Production Repository Structure containing \emph {build.gradle} files\relax }}{34}{figure.caption.19}
+\contentsline {figure}{\numberline {16}{\ignorespaces \textsf {\itshape build.gradle} at as400prod level\relax }}{35}{figure.caption.20}
+\contentsline {figure}{\numberline {17}{\ignorespaces \textsf {\itshape build.gradle} at as400prod level(contd.)\relax }}{36}{figure.caption.21}
+\contentsline {figure}{\numberline {18}{\ignorespaces Excerpt of \textsf {\itshape build.gradle} of a Collection containing Constituents\relax }}{37}{figure.caption.22}
+\contentsline {figure}{\numberline {19}{\ignorespaces Jenkins Master Slave set-up\relax }}{40}{figure.caption.23}
+\contentsline {figure}{\numberline {20}{\ignorespaces Overview of Stash - Jenkins connection\relax }}{41}{figure.caption.24}
+\contentsline {figure}{\numberline {21}{\ignorespaces Overview of the structure of a Job chain containing phases and jobs\relax }}{43}{figure.caption.25}
+\contentsline {figure}{\numberline {22}{\ignorespaces A detailed Jenkins workflow for the project under study\relax }}{44}{figure.caption.26}
