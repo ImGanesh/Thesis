@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.5.22)  16 MAR 2017 11:15
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.5.22)  17 MAR 2017 16:36
 entering extended mode
 **seminar-template.tex
 ("D:\Master Thesis\Thesis\Report\seminar-template.tex"
@@ -1219,7 +1219,7 @@ LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <12> not available
 )
 \tf@lof=\write6
  [7] [8]
-<./Figures/CI-workflow.pdf, id=260, 845.55902pt x 598.03424pt>
+<./Figures/CI-workflow.pdf, id=263, 845.55902pt x 598.03424pt>
 File: ./Figures/CI-workflow.pdf Graphic file (type pdf)
 
 <use ./Figures/CI-workflow.pdf>
@@ -1231,7 +1231,7 @@ Overfull \hbox (24.90288pt too wide) in paragraph at lines 124--126
  []
 
 [9] [10 <D:/Master Thesis/Thesis/Report/Figures/CI-workflow.pdf>]
-<./Figures/ExpVsConc.pdf, id=311, 845.55902pt x 598.03424pt>
+<./Figures/ExpVsConc.pdf, id=314, 845.55902pt x 598.03424pt>
 File: ./Figures/ExpVsConc.pdf Graphic file (type pdf)
 
 <use ./Figures/ExpVsConc.pdf>
@@ -1283,7 +1283,7 @@ LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <10.95> not available
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 233.
  [16]
-<./Figures/AR.png, id=445, 269.20575pt x 104.18925pt>
+<./Figures/AR.png, id=448, 269.20575pt x 104.18925pt>
 File: ./Figures/AR.png Graphic file (type png)
  <use ./Figures/AR.png>
 Package pdftex.def Info: ./Figures/AR.png used on input line 253.
@@ -1304,7 +1304,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 277--278
 
  []
 
-[19] [20] <./Figures/SDE-Chart.pdf, id=501, 845.55902pt x 598.03424pt>
+[19] [20] <./Figures/SDE-Chart.pdf, id=504, 845.55902pt x 598.03424pt>
 File: ./Figures/SDE-Chart.pdf Graphic file (type pdf)
 
 <use ./Figures/SDE-Chart.pdf>
@@ -1339,7 +1339,7 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 349--371
 [] 
  []
 
-[23] [24] <./Figures/Gitflow-Workflow.pdf, id=580, 845.55902pt x 598.03424pt>
+[23] [24] <./Figures/Gitflow-Workflow.pdf, id=583, 845.55902pt x 598.03424pt>
 File: ./Figures/Gitflow-Workflow.pdf Graphic file (type pdf)
 
 <use ./Figures/Gitflow-Workflow.pdf>
@@ -1402,76 +1402,76 @@ LaTeX Font Info:    Font shape `OML/lmr/m/n' in size <8> not available
 [29] [30] [31]
 LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <8> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 600.
-
-Underfull \hbox (badness 10000) in paragraph at lines 637--638
+ [32]
+Underfull \hbox (badness 10000) in paragraph at lines 638--639
 
  []
 
-[32]
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 642--674
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 643--675
 [] 
  []
 
 
-Underfull \hbox (badness 1087) in paragraph at lines 674--674
+Underfull \hbox (badness 1087) in paragraph at lines 675--675
 [][][]|\OT1/lmr/m/n/12 An ex-cerpt of the AS400 Pro-duc-tion Repos-i-tory Struc
 -ture con-tain-ing
  []
 
-LaTeX Font Info:    Try loading font information for OML+pcr on input line 707.
+LaTeX Font Info:    Try loading font information for OML+pcr on input line 708.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omlpcr.fd"
 File: omlpcr.fd 
 )
 LaTeX Font Info:    Font shape `OML/pcr/m/n' in size <8> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 707.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 708.
  [33] [34]
 [35]
 
-Package Listings Warning: Text dropped after begin of listing on input line 787
+Package Listings Warning: Text dropped after begin of listing on input line 788
 .
 
 [36] [37] [38]
-<./Figures/Jenkins-Master-Slave.pdf, id=938, 845.55902pt x 598.03424pt>
+<./Figures/Jenkins-Master-Slave.pdf, id=941, 845.55902pt x 598.03424pt>
 File: ./Figures/Jenkins-Master-Slave.pdf Graphic file (type pdf)
 
 <use ./Figures/Jenkins-Master-Slave.pdf>
 Package pdftex.def Info: ./Figures/Jenkins-Master-Slave.pdf used on input line 
-829.
+831.
 (pdftex.def)             Requested size: 421.98041pt x 171.03369pt.
  [39]
-<./Figures/jenkins-workflow.png, id=944, 487.06969pt x 343.2825pt>
+<./Figures/jenkins-workflow.png, id=947, 487.06969pt x 343.2825pt>
 File: ./Figures/jenkins-workflow.png Graphic file (type png)
 
 <use ./Figures/jenkins-workflow.png>
-Package pdftex.def Info: ./Figures/jenkins-workflow.png used on input line 838.
+Package pdftex.def Info: ./Figures/jenkins-workflow.png used on input line 840.
 
 (pdftex.def)             Requested size: 448.13095pt x 315.83943pt.
  [40 <D:/Master Thesis/Thesis/Report/Figures/Jenkins-Master-Slave.pdf>] [41 <D:
 /Master Thesis/Thesis/Report/Figures/jenkins-workflow.png>]
-<./Figures/ci-workflow-phase.pdf, id=994, 845.55902pt x 598.03424pt>
+<./Figures/ci-workflow-phase.pdf, id=997, 845.55902pt x 598.03424pt>
 File: ./Figures/ci-workflow-phase.pdf Graphic file (type pdf)
 
 <use ./Figures/ci-workflow-phase.pdf>
-Package pdftex.def Info: ./Figures/ci-workflow-phase.pdf used on input line 869
+Package pdftex.def Info: ./Figures/ci-workflow-phase.pdf used on input line 871
 .
 (pdftex.def)             Requested size: 512.22014pt x 259.28679pt.
 
-Overfull \hbox (64.08919pt too wide) in paragraph at lines 868--870
+Overfull \hbox (64.08919pt too wide) in paragraph at lines 870--872
  [] 
  []
 
-<./Figures/detailed-jenkins-workflow.png, id=996, 672.5928pt x 455.7828pt>
+<./Figures/detailed-jenkins-workflow.png, id=999, 672.5928pt x 455.7828pt>
 File: ./Figures/detailed-jenkins-workflow.png Graphic file (type png)
 
 <use ./Figures/detailed-jenkins-workflow.png>
 Package pdftex.def Info: ./Figures/detailed-jenkins-workflow.png used on input 
-line 876.
+line 878.
 (pdftex.def)             Requested size: 448.13095pt x 303.6829pt.
  [42] [43 <D:/Master Thesis/Thesis/Report/Figures/ci-workflow-phase.pdf>] [44 <
 D:/Master Thesis/Thesis/Report/Figures/detailed-jenkins-workflow.png>] [45] [46
-] [47]
-("D:\Master Thesis\Thesis\Report\seminar-template.bbl" [48]
+] [47] [48]
+("D:\Master Thesis\Thesis\Report\seminar-template.bbl" [49]
 Underfull \hbox (badness 10000) in paragraph at lines 138--140
 []\OT1/lmr/m/n/12 ``Gitflow work-flow.'' URL: [][]$\OT1/lmtt/m/n/12 https : / /
  www . atlassian . com / git / tutorials /$
@@ -1483,25 +1483,25 @@ Underfull \hbox (badness 1325) in paragraph at lines 148--150
 ]$\OT1/lmtt/m/n/12 https : / / confluence .$
  []
 
-[49]) [50] [51] [52]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1029.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1029.
+[50]) [51] [52]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1038.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1038.
  ("D:\Master Thesis\Thesis\Report\seminar-template.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1029.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1029.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1038.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1038.
 
 Package rerunfilecheck Info: File `seminar-template.out' has not changed.
 (rerunfilecheck)             Checksum: 8479C100EB818CEA79155E8278198680;2282.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1029.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1038.
  ) 
 Here is how much of TeX's memory you used:
- 31972 strings out of 493921
- 738971 string characters out of 3144882
- 1122563 words of memory out of 3000000
- 34322 multiletter control sequences out of 15000+200000
+ 31973 strings out of 493921
+ 739009 string characters out of 3144882
+ 1124239 words of memory out of 3000000
+ 34323 multiletter control sequences out of 15000+200000
  60471 words of font info for 55 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 73i,19n,100p,2315b,2263s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 73i,20n,100p,2315b,2259s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program F
 iles (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files (x86)/
 MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files (x86)/MiKTeX 2.9/
@@ -1523,9 +1523,9 @@ onts/type1/public/lm/lmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
 public/lm/lmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lm
 tt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb>
 
-Output written on seminar-template.pdf (52 pages, 1412173 bytes).
+Output written on seminar-template.pdf (52 pages, 1417971 bytes).
 PDF statistics:
- 1244 PDF objects out of 1440 (max. 8388607)
+ 1247 PDF objects out of 1440 (max. 8388607)
  394 named destinations out of 1000 (max. 500000)
  332 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -21,7 +21,7 @@
 \contentsline {section}{\numberline {4}Gradle for AS400 CSW}{31}{section.4}
 \contentsline {subsection}{\numberline {4.1}Terminology}{31}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Build System Design Aspects}{33}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Analysis of Build Logic}{35}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.3}Analysis of Build Logic}{36}{subsection.4.3}
 \contentsline {section}{\numberline {5}Continuous Integration in AS400 CSW}{39}{section.5}
 \contentsline {subsection}{\numberline {5.1}Terminology}{39}{subsection.5.1}
 \contentsline {subsection}{\numberline {5.2}CI Workflow for AS400 CSW}{40}{subsection.5.2}
@@ -30,7 +30,7 @@
 \contentsline {subsection}{\numberline {6.1}Performance Comparison}{47}{subsection.6.1}
 \contentsline {subsection}{\numberline {6.2}Complexity of Build Logic}{47}{subsection.6.2}
 \contentsline {subsection}{\numberline {6.3}Feature Comparison}{47}{subsection.6.3}
-\contentsline {subsection}{\numberline {6.4}Summary}{47}{subsection.6.4}
-\contentsline {section}{\numberline {7}Conclusion}{47}{section.7}
-\contentsline {subsection}{\numberline {7.1}Summary}{47}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}Future Work}{47}{subsection.7.2}
+\contentsline {subsection}{\numberline {6.4}Summary}{48}{subsection.6.4}
+\contentsline {section}{\numberline {7}Conclusion}{48}{section.7}
+\contentsline {subsection}{\numberline {7.1}Summary}{48}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Future Work}{48}{subsection.7.2}

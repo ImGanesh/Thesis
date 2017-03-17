@@ -21,3 +21,4 @@
 \contentsline {figure}{\numberline {20}{\ignorespaces Overview of Stash - Jenkins connection\relax }}{41}{figure.caption.24}
 \contentsline {figure}{\numberline {21}{\ignorespaces Overview of the structure of a Job chain containing phases and jobs\relax }}{43}{figure.caption.25}
 \contentsline {figure}{\numberline {22}{\ignorespaces A detailed Jenkins workflow for the project under study\relax }}{44}{figure.caption.26}
+\contentsline {figure}{\numberline {23}{\ignorespaces Performance comparisons between Gradle and Make for clean task, specific target and incremental builds\relax }}{48}{figure.caption.27}
